@@ -1,0 +1,14 @@
+# Cloudflare Pages redirects
+# Send root to index
+/             /index.html      200
+# Trailing slashes
+/stay/        /stay.html       301
+/about/       /about.html      301
+/retreat/     /retreat.html    301
+/yatra/       /yatra.html      301
+/treks/       /treks.html      301
+/membership/  /membership.html 301
+/contact/     /contact.html    301
+/blog/        /blog.html       301
+/gallery/     /gallery.html    301
+/faq/         /faq.html        301
