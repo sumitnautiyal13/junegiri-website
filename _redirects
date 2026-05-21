@@ -1,7 +1,5 @@
-# Cloudflare Pages redirects
-# Send root to index
-/             /index.html      200
-# Trailing slashes
+# Cloudflare Pages / Workers Assets redirects
+# Trailing-slash → .html (no root rule — would cause infinite loop)
 /stay/        /stay.html       301
 /about/       /about.html      301
 /retreat/     /retreat.html    301
@@ -12,3 +10,8 @@
 /blog/        /blog.html       301
 /gallery/     /gallery.html    301
 /faq/         /faq.html        301
+/press/       /press.html      301
+/sustainability/  /sustainability.html  301
+/privacy/     /privacy.html    301
+/terms/       /terms.html      301
+/cancellation/ /cancellation.html 301
