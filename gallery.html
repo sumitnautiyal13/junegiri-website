@@ -9,13 +9,13 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gallery — JuneGiri Farms, Rishikesh">
 <meta property="og:description" content="Photos & video of JuneGiri Farms — rooms, surroundings, yoga shala, kitchen, forest views.">
-<meta property="og:image" content="https://junegirifarms.com/images/surroundings/3.jpg">
+<meta property="og:image" content="/images/surroundings/3.jpg">
 <meta property="og:url" content="https://junegiriyatra.com/gallery.html">
 <meta property="og:site_name" content="JuneGiri Farms">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Gallery — JuneGiri Farms, Rishikesh">
 <meta name="twitter:description" content="Photos & video of JuneGiri Farms — rooms, surroundings, yoga shala, kitchen, forest views.">
-<meta name="twitter:image" content="https://junegirifarms.com/images/surroundings/3.jpg">
+<meta name="twitter:image" content="/images/surroundings/3.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://junegiriyatra.com/gallery.html">
@@ -34,7 +34,7 @@
 @media(max-width:900px){.gallery-grid{grid-template-columns:repeat(3,1fr)}.gallery-grid .g.wide{grid-column:span 2}}
 @media(max-width:640px){.gallery-grid{grid-template-columns:repeat(2,1fr)}.gallery-grid .g.tall,.gallery-grid .g.wide{grid-column:span 1;grid-row:span 1;aspect-ratio:1}}
 .video-cta{margin:0 auto 60px;max-width:920px;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#000;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.2);cursor:pointer}
-.video-cta::before{content:'';position:absolute;inset:0;background:url('https://junegirifarms.com/images/surroundings/3.jpg') center/cover;opacity:.7}
+.video-cta::before{content:'';position:absolute;inset:0;background:url('/images/surroundings/3.jpg') center/cover;opacity:.7}
 .video-cta::after{content:'';position:absolute;inset:0;background:rgba(15,76,117,0.4)}
 .video-cta .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:96px;height:96px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 8px 30px rgba(0,0,0,0.3)}
 .video-cta .play svg{margin-left:6px}
@@ -109,7 +109,7 @@ var items=[
 function render(filter){
   var g=document.getElementById('gallery');
   g.innerHTML=items.filter(function(i){return filter==='all'||i.cat===filter;}).map(function(i){
-    return '<div class="g '+(i.cls||'')+'" style="background-image:url(\'https://junegirifarms.com/images/'+i.src+'\')"></div>';
+    return '<div class="g '+(i.cls||'')+'" style="background-image:url(\'/images/'+i.src+'\')"></div>';
   }).join('');
 }
 function filterGallery(ev,filter){
