@@ -2,7 +2,7 @@
 
 The official website for **JuneGiri Farms Pvt. Ltd.** — a family-run resort, yoga retreat & yatra operator at the edge of Rajaji National Park, Rishikesh.
 
-🌐 **Live:** [junegiriyatra.com](https://junegiriyatra.com)
+🌐 **Live:** [junegirifarms.com](https://junegirifarms.com)
 📱 **Bookings:** WhatsApp [+91 98738 97652](https://wa.me/919873897652)
 
 ---
