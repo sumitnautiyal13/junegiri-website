@@ -20,7 +20,7 @@
 <link rel="preload" as="image" href="/images/surroundings/7.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://junegirifarms.com/index.html">
-<link rel="stylesheet" href="css/styles.css?v=2026052201">
+<link rel="stylesheet" href="css/styles.css?v=2026052202">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BedAndBreakfast","name":"JuneGiri Farms","image":"/images/surroundings/3.jpg","url":"https://junegirifarms.com","telephone":"+91-98738-97652","email":"junegirifarms@gmail.com","priceRange":"₹₹","address":{"@type":"PostalAddress","streetAddress":"House No-85, Post-Maral, Yamkeshwar","addressLocality":"Pauri Garhwal","addressRegion":"Uttarakhand","postalCode":"249304","addressCountry":"IN"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"512"},"amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Yoga Shala"},{"@type":"LocationFeatureSpecification","name":"Pahadi Kitchen"},{"@type":"LocationFeatureSpecification","name":"Forest Trails"}]}
 </script>
@@ -51,9 +51,20 @@
 .cm-hero-trust span{display:inline-flex;align-items:center;gap:6px}
 .cm-hero-trust strong{color:#7FD4FF;font-weight:800}
 
-/* BOOKING WIDGET */
-.cm-widget{position:relative;z-index:5;max-width:1100px;margin:-72px auto 0;background:#fff;border-radius:14px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,0.18);display:grid;grid-template-columns:repeat(4,1fr) auto;gap:12px;align-items:end}
-.cm-w-field{position:relative}
+/* BOOKING WIDGET — sticky, sits higher in hero, stays visible while scrolling */
+.cm-widget{
+  position:sticky;top:84px;z-index:50;
+  max-width:1100px;margin:-110px auto 0;
+  background:#fff;border-radius:14px;padding:16px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.22);
+  display:grid;grid-template-columns:repeat(4,1fr) auto;gap:12px;align-items:end;
+  transition:box-shadow .25s ease,padding .2s ease;
+}
+.cm-widget.stuck{padding:10px 14px;box-shadow:0 6px 20px rgba(0,0,0,0.12);border-radius:10px}
+.cm-widget.stuck .cm-w-field label{font-size:0.62rem;margin-bottom:3px}
+.cm-widget.stuck .cm-w-field input,.cm-widget.stuck .cm-w-field select{padding:9px 12px;font-size:0.88rem}
+.cm-widget.stuck .cm-w-btn{padding:10px 18px;font-size:0.85rem}
+.cm-w-field{position:relative;min-width:0}
 .cm-w-field label{display:block;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px}
 .cm-w-field input,.cm-w-field select{width:100%;padding:14px;border:1px solid var(--border);border-radius:8px;font-size:0.95rem;font-weight:600;color:var(--ink);background:#fff}
 .cm-w-field input:focus,.cm-w-field select:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(0,168,232,0.12)}
@@ -62,8 +73,28 @@
 .cm-w-btn:hover{background:var(--orange-hover)}
 .cm-w-btn.wa{background:var(--whatsapp)}
 .cm-w-btn.wa:hover{background:var(--whatsapp-dark)}
-@media(max-width:1024px){.cm-widget{grid-template-columns:repeat(2,1fr);gap:14px;margin:-40px 24px 0}.cm-w-actions{grid-column:1/-1;flex-direction:row}.cm-w-actions .cm-w-btn{flex:1}}
-@media(max-width:640px){.cm-hero{height:auto;min-height:auto;padding-bottom:24px}.cm-hero-inner{padding:100px 20px 32px}.cm-widget{grid-template-columns:1fr;margin:24px 20px 0;padding:16px}.cm-w-actions{flex-direction:column}}
+
+/* TABLET: 2x2 grid + full-width buttons */
+@media(max-width:1024px){
+  .cm-widget{grid-template-columns:repeat(2,1fr);gap:10px;margin:-60px 16px 0;padding:14px;top:80px}
+  .cm-w-actions{grid-column:1/-1;flex-direction:row;gap:8px}
+  .cm-w-actions .cm-w-btn{flex:1;padding:12px 14px;font-size:0.85rem}
+}
+
+/* MOBILE: compact 2x2 grid, fits inside viewport, action buttons row sized down */
+@media(max-width:640px){
+  .cm-hero{height:auto;min-height:auto;padding-bottom:10px}
+  .cm-hero-inner{padding:90px 18px 22px}
+  .cm-hero h1{font-size:clamp(1.85rem,8vw,2.4rem)}
+  .cm-hero p{font-size:0.95rem;margin-bottom:20px}
+  .cm-hero-trust{gap:10px 16px;font-size:0.78rem;margin-bottom:18px}
+  .cm-widget{grid-template-columns:1fr 1fr;gap:8px;margin:-50px 12px 0;padding:12px;border-radius:12px;top:74px}
+  .cm-w-field label{font-size:0.6rem;letter-spacing:1px;margin-bottom:3px}
+  .cm-w-field input,.cm-w-field select{padding:9px 10px;font-size:0.82rem;border-radius:7px}
+  .cm-w-actions{grid-column:1/-1;flex-direction:row;gap:7px;margin-top:2px}
+  .cm-w-actions .cm-w-btn{padding:10px 8px;font-size:0.78rem;border-radius:7px}
+  .cm-w-btn svg{width:14px;height:14px}
+}
 
 /* PRESS STRIP */
 .trust-press{padding:48px 0 32px;background:#fff;border-bottom:1px solid var(--border)}
@@ -747,6 +778,6 @@
 <!-- FOOTER -->
 <div data-include="footer"></div>
 
-<script src="js/main.js?v=2026052201"></script>
+<script src="js/main.js?v=2026052202"></script>
 </body>
 </html>
