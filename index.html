@@ -3,38 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JuneGiri Farms — Resort Stays, Yoga Retreats & Char Dham Yatra · Rishikesh</title>
-<meta name="description" content="A family-run resort and yoga retreat at the edge of Rajaji National Park, Rishikesh. Stay, practice, pilgrimage. WhatsApp to book. 4.9★ on Google · 500+ guests since 2020.">
+<title>JuneGiri Farms — Wilderness Homestay, Yoga Retreats & Char Dham Yatra · Rishikesh</title>
+<meta name="description" content="A family-run homestay and yoga retreat at the edge of Rajaji National Park, Rishikesh. Stay, practice, pilgrimage. WhatsApp to book. 4.9★ on Google · 500+ guests since 2020.">
 <meta name="theme-color" content="#0F4C75">
-<meta property="og:title" content="JuneGiri Farms — Mountain Resort, Yoga & Yatra in Rishikesh">
-<meta property="og:description" content="Family-run resort at the edge of Rajaji National Park. Forest rooms, sunrise yoga, Char Dham Yatra, Himalayan treks. Since 2020.">
+<meta property="og:title" content="JuneGiri Farms — Jungle Homestay, Yoga & Yatra in Rishikesh">
+<meta property="og:description" content="Family-run homestay at the edge of Rajaji National Park. Forest rooms, sunrise yoga, Char Dham Yatra, Himalayan treks. Since 2020.">
 <meta property="og:image" content="/images/surroundings/3.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="apple-touch-icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Preload hero slideshow images so all 4 are cached before the animation cycles to them -->
+<link rel="preload" as="image" href="/images/surroundings/3.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/images/rooms/1.jpg">
+<link rel="preload" as="image" href="/images/surroundings/15.jpg">
+<link rel="preload" as="image" href="/images/surroundings/7.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://junegirifarms.com/index.html">
-<link rel="stylesheet" href="css/styles.css?v=2026051902">
+<link rel="stylesheet" href="css/styles.css?v=2026052201">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Resort","name":"JuneGiri Farms","image":"/images/surroundings/3.jpg","url":"https://junegirifarms.com","telephone":"+91-98738-97652","email":"junegirifarms@gmail.com","priceRange":"₹₹","address":{"@type":"PostalAddress","streetAddress":"House No-85, Post-Maral, Yamkeshwar","addressLocality":"Pauri Garhwal","addressRegion":"Uttarakhand","postalCode":"249304","addressCountry":"IN"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"512"},"amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Yoga Shala"},{"@type":"LocationFeatureSpecification","name":"Pahadi Kitchen"},{"@type":"LocationFeatureSpecification","name":"Forest Trails"}]}
+{"@context":"https://schema.org","@type":"BedAndBreakfast","name":"JuneGiri Farms","image":"/images/surroundings/3.jpg","url":"https://junegirifarms.com","telephone":"+91-98738-97652","email":"junegirifarms@gmail.com","priceRange":"₹₹","address":{"@type":"PostalAddress","streetAddress":"House No-85, Post-Maral, Yamkeshwar","addressLocality":"Pauri Garhwal","addressRegion":"Uttarakhand","postalCode":"249304","addressCountry":"IN"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"512"},"amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Yoga Shala"},{"@type":"LocationFeatureSpecification","name":"Pahadi Kitchen"},{"@type":"LocationFeatureSpecification","name":"Forest Trails"}]}
 </script>
 <style>
 /* =====================================================
-   HOME — Resort-grade trust build
+   HOME — Homestay-grade trust build
    ===================================================== */
 .site-header{background:rgba(255,255,255,0.98);border-bottom:1px solid var(--border)}
 
 /* HERO SLIDESHOW */
 .cm-hero{position:relative;height:88vh;min-height:620px;overflow:hidden;color:#fff}
-.cm-hero-slides{position:absolute;inset:0;z-index:0}
-.cm-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:cmFade 24s infinite}
+.cm-hero-slides{position:absolute;inset:0;z-index:0;background:#0F4C75}
+/* First slide visible immediately to prevent blank flash before animation begins */
+.cm-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;will-change:opacity,transform;animation:cmFade 20s infinite;animation-fill-mode:both}
 .cm-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,50,80,0.45) 0%,rgba(9,50,80,0.7) 100%)}
 .cm-slide:nth-child(1){animation-delay:0s}
-.cm-slide:nth-child(2){animation-delay:6s}
-.cm-slide:nth-child(3){animation-delay:12s}
-.cm-slide:nth-child(4){animation-delay:18s}
-@keyframes cmFade{0%{opacity:0;transform:scale(1.02)}4%{opacity:1}21%{opacity:1;transform:scale(1.06)}25%{opacity:0;transform:scale(1.06)}100%{opacity:0}}
+.cm-slide:nth-child(2){animation-delay:5s}
+.cm-slide:nth-child(3){animation-delay:10s}
+.cm-slide:nth-child(4){animation-delay:15s}
+/* Each slide: fade in (0-5%, ~1s), hold (5-25%, ~4s), fade out (25-30%, ~1s), hidden until next loop */
+@keyframes cmFade{0%{opacity:0;transform:scale(1.02)}5%{opacity:1}25%{opacity:1;transform:scale(1.05)}30%{opacity:0;transform:scale(1.05)}100%{opacity:0}}
 .cm-hero-inner{position:relative;z-index:1;height:100%;max-width:1200px;margin:0 auto;padding:80px 24px 40px;display:flex;flex-direction:column;justify-content:center}
 .cm-hero-kicker{display:inline-block;background:rgba(0,168,232,0.2);color:#7FD4FF;padding:6px 14px;border-radius:50px;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;width:fit-content;border:1px solid rgba(0,168,232,0.4)}
 .cm-hero h1{font-family:'Poppins',sans-serif;font-weight:800;color:#fff;font-size:clamp(2.4rem,5.5vw,4.4rem);line-height:1.05;letter-spacing:-0.02em;margin-bottom:18px;max-width:780px}
@@ -296,8 +303,8 @@
   </div>
   <div class="cm-hero-inner">
     <span class="cm-hero-kicker">Rajaji National Park · Rishikesh · Since 2020</span>
-    <h1>The mountain resort<br>your <span class="accent">family</span> deserves.</h1>
-    <p>Family-run resort at the edge of Rajaji National Park. Forest rooms, yoga shala, Pahadi kitchen, and curated trips across the Garhwal Himalayas — built for the way Indian families actually travel.</p>
+    <h1>The Himalayan homestay<br>your <span class="accent">family</span> deserves.</h1>
+    <p>Family-run homestay at the edge of Rajaji National Park. Forest rooms, yoga shala, Pahadi kitchen, and curated trips across the Garhwal Himalayas — built for the way Indian families actually travel.</p>
     <div class="cm-hero-trust">
       <span><strong>★ 4.9</strong> Google rating</span>
       <span><strong>500+</strong> happy guests</span>
@@ -312,7 +319,7 @@
   <div class="cm-w-field">
     <label>Trip type</label>
     <select name="trip" required>
-      <option>Resort Stay</option>
+      <option>Homestay (Rooms & Cottages)</option>
       <option>Yoga Retreat (5 or 7 days)</option>
       <option>Char Dham Yatra</option>
       <option>Kedarnath Yatra</option>
@@ -387,9 +394,9 @@
   <div class="container">
     <div class="cm-resort-header">
       <div>
-        <span class="cm-resort-tag">Our Resort</span>
+        <span class="cm-resort-tag">Our Homestay</span>
         <h2>JuneGiri Farms & Homestay</h2>
-        <p>A family-run resort set at the edge of Rajaji National Park, 7 km from Neelkanth Mahadev Temple. Three room types, an open yoga shala, a Pahadi farm kitchen, and direct access to forest trails — yours alone for the duration of your stay.</p>
+        <p>A family-run homestay set at the edge of Rajaji National Park, 7 km from Neelkanth Mahadev Temple. Three room types, an open yoga shala, a Pahadi farm kitchen, and direct access to forest trails — yours alone for the duration of your stay.</p>
       </div>
       <div class="right">
         <p class="meta">★★★★★ <strong>4.9</strong> · <strong>500+</strong> reviews</p>
@@ -442,7 +449,7 @@
         <span class="more">View routes →</span>
       </a>
       <a href="stay.html" class="cm-exp-card" style="background-image:url('/images/rooms/10.jpg');">
-        <span class="tag">Family</span><h3>Resort Stay</h3>
+        <span class="tag">Family</span><h3>Homestay & Cottages</h3>
         <p>Forest rooms, river cottages, farm suites. From ₹2,500/night.</p>
         <span class="more">Book your room →</span>
       </a>
@@ -740,6 +747,6 @@
 <!-- FOOTER -->
 <div data-include="footer"></div>
 
-<script src="js/main.js?v=2026051902"></script>
+<script src="js/main.js?v=2026052201"></script>
 </body>
 </html>
