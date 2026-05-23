@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://junegirifarms.com/gallery.html">
-<link rel="stylesheet" href="css/styles.css?v=2026052204">
+<link rel="stylesheet" href="css/styles.css?v=2026052301">
 <style>
 .gallery-tabs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:36px}
 .gallery-tab{padding:10px 22px;border-radius:50px;background:var(--cream);color:var(--ink);font-weight:600;font-size:0.9rem;cursor:pointer;border:1px solid var(--border);transition:all .2s}
@@ -39,6 +39,11 @@
 .video-cta .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:96px;height:96px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 8px 30px rgba(0,0,0,0.3)}
 .video-cta .play svg{margin-left:6px}
 .video-cta .cap{position:absolute;bottom:24px;left:24px;color:#fff;z-index:2;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.05rem}
+.gallery-clips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 0 40px}
+.gallery-clips figure{margin:0}
+.gallery-clips video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:12px;background:#000;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+.gallery-clips figcaption{font-size:0.85rem;color:var(--text-light);margin-top:8px;font-weight:500;text-align:center}
+@media(max-width:640px){.gallery-clips{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto}}
 </style>
 </head>
 <body>
@@ -55,17 +60,29 @@
 
 <section class="section">
   <div class="container">
-    <div class="video-cta" onclick="alert('Video tour is being filmed — coming soon. WhatsApp us for a live walkthrough.')">
-      <div class="play"><svg width="34" height="34" viewBox="0 0 24 24" fill="#0F4C75"><path d="M8 5v14l11-7z"/></svg></div>
-      <div class="cap">▶ A morning at JuneGiri · 1:32 min tour</div>
+    <div class="video-cta" style="cursor:default">
+      <video controls preload="none" playsinline poster="/images/video/tour-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:3">
+        <source src="/images/video/tour.mp4" type="video/mp4">
+        <a href="/images/video/tour.mp4">Download the tour video</a>.
+      </video>
     </div>
 
     <div class="gallery-tabs">
       <button class="gallery-tab active" onclick="filterGallery(event,'all')">All</button>
+      <button class="gallery-tab" onclick="filterGallery(event,'property')">The Homestay</button>
       <button class="gallery-tab" onclick="filterGallery(event,'rooms')">Rooms</button>
       <button class="gallery-tab" onclick="filterGallery(event,'surroundings')">Surroundings</button>
       <button class="gallery-tab" onclick="filterGallery(event,'food')">Food</button>
       <button class="gallery-tab" onclick="filterGallery(event,'yoga')">Yoga</button>
+      <button class="gallery-tab" onclick="filterGallery(event,'family')">Family</button>
+      <button class="gallery-tab" onclick="filterGallery(event,'farm')">Farm</button>
+    </div>
+
+    <!-- VIDEO CLIPS ROW -->
+    <div class="gallery-clips">
+      <figure><video controls preload="none" playsinline muted poster="/images/video/tour-poster.jpg"><source src="/images/video/trek.mp4" type="video/mp4"></video><figcaption>Morning trek through the fields</figcaption></figure>
+      <figure><video controls preload="none" playsinline muted><source src="/images/video/food.mp4" type="video/mp4"></video><figcaption>A Pahadi spread, fresh from the kitchen</figcaption></figure>
+      <figure><video controls preload="none" playsinline muted><source src="/images/video/family.mp4" type="video/mp4"></video><figcaption>Little wanderers on the farm</figcaption></figure>
     </div>
 
     <div class="gallery-grid" id="gallery"></div>
@@ -81,30 +98,47 @@
 <div data-include="footer"></div>
 <script>
 var items=[
-  {src:'rooms/10.jpg',cat:'rooms',cls:'wide'},      // cottage exterior at night
-  {src:'surroundings/3.jpg',cat:'surroundings'},     // hero cottage
-  {src:'rooms/1.jpg',cat:'rooms'},                   // interior with mountain view
-  {src:'surroundings/9.jpg',cat:'surroundings',cls:'tall'}, // dramatic hill + clouds
-  {src:'rooms/5.jpg',cat:'rooms'},                   // balcony view
-  {src:'food/pahadi-meal.jpg',cat:'food'},
-  {src:'surroundings/15.jpg',cat:'surroundings',cls:'wide'},// rice paddy valley
-  {src:'food/lemon-tree.jpg',cat:'food'},
-  {src:'surroundings/waterfall.jpg',cat:'surroundings'},
-  {src:'food/organic-farm.jpg',cat:'food',cls:'wide'},
-  {src:'surroundings/flower-walk.jpg',cat:'surroundings',cls:'tall'},
-  {src:'rooms/10.jpg',cat:'rooms'},
-  {src:'surroundings/7.jpg',cat:'surroundings'},     // terraced green hills
-  {src:'surroundings/mountain.jpg',cat:'surroundings'},
-  {src:'guests/3.jpg',cat:'yoga'},                   // founders on balcony
-  {src:'rooms/1.jpg',cat:'rooms'},
-  {src:'food/pahadi-meal.jpg',cat:'food'},
-  {src:'surroundings/3.jpg',cat:'surroundings'},
-  {src:'rooms/5.jpg',cat:'rooms'},
-  {src:'surroundings/9.jpg',cat:'surroundings'},
-  {src:'surroundings/waterfall.jpg',cat:'yoga'},
-  {src:'food/lemon-tree.jpg',cat:'food'},
-  {src:'surroundings/flower-walk.jpg',cat:'surroundings',cls:'wide'},
-  {src:'rooms/10.jpg',cat:'rooms'}
+  {src:'gallery/g01.jpg',cat:'property'},
+  {src:'gallery/g02.jpg',cat:'property',cls:'tall'},
+  {src:'gallery/g03.jpg',cat:'property',cls:'tall'},
+  {src:'gallery/g04.jpg',cat:'property'},
+  {src:'gallery/g05.jpg',cat:'property'},
+  {src:'gallery/g06.jpg',cat:'property',cls:'tall'},
+  {src:'gallery/g07.jpg',cat:'property',cls:'tall'},
+  {src:'gallery/g08.jpg',cat:'rooms',cls:'tall'},
+  {src:'gallery/g09.jpg',cat:'rooms'},
+  {src:'gallery/g10.jpg',cat:'rooms'},
+  {src:'gallery/g11.jpg',cat:'rooms',cls:'tall'},
+  {src:'gallery/g12.jpg',cat:'rooms',cls:'tall'},
+  {src:'gallery/g13.jpg',cat:'rooms',cls:'tall'},
+  {src:'gallery/g14.jpg',cat:'food',cls:'tall'},
+  {src:'gallery/g15.jpg',cat:'food',cls:'tall'},
+  {src:'gallery/g16.jpg',cat:'food'},
+  {src:'gallery/g17.jpg',cat:'food'},
+  {src:'gallery/g18.jpg',cat:'food',cls:'wide'},
+  {src:'gallery/g19.jpg',cat:'food'},
+  {src:'gallery/g20.jpg',cat:'surroundings',cls:'tall'},
+  {src:'gallery/g21.jpg',cat:'surroundings',cls:'wide'},
+  {src:'gallery/g22.jpg',cat:'surroundings'},
+  {src:'gallery/g23.jpg',cat:'surroundings',cls:'tall'},
+  {src:'gallery/g24.jpg',cat:'surroundings',cls:'tall'},
+  {src:'gallery/g25.jpg',cat:'surroundings',cls:'wide'},
+  {src:'gallery/g26.jpg',cat:'surroundings',cls:'wide'},
+  {src:'gallery/g27.jpg',cat:'surroundings'},
+  {src:'gallery/g28.jpg',cat:'surroundings',cls:'tall'},
+  {src:'gallery/g29.jpg',cat:'surroundings',cls:'tall'},
+  {src:'gallery/g30.jpg',cat:'yoga',cls:'wide'},
+  {src:'gallery/g31.jpg',cat:'yoga',cls:'wide'},
+  {src:'gallery/g32.jpg',cat:'yoga'},
+  {src:'gallery/g33.jpg',cat:'family',cls:'tall'},
+  {src:'gallery/g34.jpg',cat:'family'},
+  {src:'gallery/g35.jpg',cat:'family',cls:'tall'},
+  {src:'gallery/g36.jpg',cat:'family',cls:'wide'},
+  {src:'gallery/g37.jpg',cat:'family'},
+  {src:'gallery/g38.jpg',cat:'farm',cls:'wide'},
+  {src:'gallery/g39.jpg',cat:'farm',cls:'wide'},
+  {src:'gallery/g40.jpg',cat:'farm',cls:'tall'},
+  {src:'gallery/g41.jpg',cat:'amenity'},
 ];
 function render(filter){
   var g=document.getElementById('gallery');
@@ -119,6 +153,6 @@ function filterGallery(ev,filter){
 }
 render('all');
 </script>
-<script src="js/main.js?v=2026052204"></script>
+<script src="js/main.js?v=2026052301"></script>
 </body>
 </html>
