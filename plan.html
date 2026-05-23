@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan Your Stay — Rates, Activities & Booking · JuneGiri Farms</title>
+<meta name="description" content="Everything for your JuneGiri Farms stay in one place — all-inclusive rates from ₹2,500/person/day (all meals + tea), 12+ activities, photos, and one-tap WhatsApp booking.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="apple-touch-icon" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Plan Your Stay at JuneGiri Farms — Rates, Activities & Booking">
+<meta property="og:description" content="All-inclusive from ₹2,500/person/day (stay + 3 veg meals + tea). Treks, yoga, Rishikesh activities. Tap to book on WhatsApp.">
+<meta property="og:image" content="https://junegirifarms.com/images/surroundings/og-hero.jpg">
+<meta property="og:url" content="https://junegirifarms.com/plan">
+<meta property="og:site_name" content="JuneGiri Farms">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Plan Your Stay at JuneGiri Farms">
+<meta name="twitter:description" content="All-inclusive from ₹2,500/person/day. Treks, yoga, Rishikesh activities. Tap to book on WhatsApp.">
+<meta name="twitter:image" content="https://junegirifarms.com/images/surroundings/og-hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://junegirifarms.com/plan">
+<link rel="stylesheet" href="css/styles.css?v=2026052304">
+<style>
+/* PLAN PAGE */
+.plan-quick{background:var(--cream);padding:20px 0;border-bottom:1px solid var(--border)}
+.plan-quick-row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 28px;font-size:0.92rem;font-weight:600;color:var(--ink)}
+.plan-quick-row span{display:inline-flex;align-items:center;gap:8px}
+.plan-quick-row .ic{font-size:1.1rem}
+
+/* PRICING */
+.plan-price{padding:70px 0 40px}
+.plan-price-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;margin-top:40px;align-items:start}
+.price-card{background:#fff;border:2px solid var(--border);border-radius:18px;padding:36px 32px;position:relative}
+.price-card.feature{border-color:var(--orange);background:linear-gradient(180deg,#fff 0%,var(--orange-soft) 100%)}
+.price-card.feature::before{content:'Most guests pick this';position:absolute;top:-14px;left:32px;background:var(--orange);color:#fff;padding:6px 16px;border-radius:50px;font-size:0.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.price-card .ptag{font-family:'Poppins',sans-serif;font-size:0.74rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.price-card .pamount{font-family:'Poppins',sans-serif;font-weight:800;font-size:2.8rem;color:var(--green);line-height:1}
+.price-card .pamount small{font-size:1rem;color:var(--text-light);font-weight:500}
+.price-card .pnote{color:var(--text-light);font-size:0.95rem;margin:8px 0 20px;line-height:1.5}
+.price-card ul{list-style:none;padding:0;margin:0}
+.price-card li{padding:9px 0 9px 26px;position:relative;font-size:0.95rem;color:var(--ink);border-bottom:1px solid var(--border);line-height:1.45}
+.price-card li:last-child{border-bottom:none}
+.price-card li::before{content:'✓';position:absolute;left:0;top:9px;color:var(--green);font-weight:800}
+.room-rate{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);font-size:0.95rem}
+.room-rate:last-child{border-bottom:none}
+.room-rate strong{font-family:'Poppins',sans-serif;color:var(--green);font-weight:800}
+.room-rate small{display:block;color:var(--text-light);font-size:0.8rem;font-weight:400}
+@media(max-width:820px){.plan-price-grid{grid-template-columns:1fr}}
+
+/* ACTIVITIES */
+.plan-acts{padding:60px 0;background:var(--cream)}
+.acts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.acts-col{background:#fff;border:1px solid var(--border);border-radius:16px;padding:30px 28px}
+.acts-col h3{font-size:1.2rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.acts-col .sub{font-size:0.85rem;color:var(--text-light);margin-bottom:18px}
+.acts-col ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.acts-col li{display:flex;gap:10px;align-items:flex-start;font-size:0.95rem;color:var(--ink);font-weight:500}
+.acts-col li::before{content:'';flex-shrink:0;width:18px;height:18px;margin-top:2px;border-radius:50%;background:var(--orange-soft);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2300A8E8' stroke-width='3'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+@media(max-width:820px){.acts-grid{grid-template-columns:1fr}}
+
+/* PHOTO STRIP */
+.plan-photos{padding:60px 0}
+.plan-photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:36px}
+.plan-photo-grid .p{aspect-ratio:1;background-size:cover;background-position:center;border-radius:12px}
+.plan-photo-grid .p.wide{grid-column:span 2;aspect-ratio:2/1}
+@media(max-width:640px){.plan-photo-grid{grid-template-columns:repeat(2,1fr)}.plan-photo-grid .p.wide{grid-column:span 2}}
+
+/* BOOKING FORM */
+.plan-book{padding:70px 0;background:linear-gradient(135deg,var(--green) 0%,var(--green-dark) 100%);color:#fff}
+.plan-book .section-header{color:#fff}
+.plan-book .kicker{color:#7FD4FF}
+.plan-book h2{color:#fff}
+.plan-book .section-sub{color:rgba(255,255,255,0.85)}
+.book-form{max-width:760px;margin:36px auto 0;background:#fff;border-radius:18px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px;box-shadow:0 30px 80px rgba(0,0,0,0.3)}
+.book-field{display:flex;flex-direction:column;gap:6px}
+.book-field.full{grid-column:1/-1}
+.book-field label{font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light)}
+.book-field input,.book-field select{padding:13px 14px;border:1px solid var(--border);border-radius:9px;font-size:0.95rem;font-weight:600;color:var(--ink);font-family:inherit;background:#fff}
+.book-field input:focus,.book-field select:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(0,168,232,0.12)}
+.book-submit{grid-column:1/-1;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px;background:var(--whatsapp);color:#fff;border:none;border-radius:10px;font-weight:800;font-size:1.02rem;font-family:inherit;cursor:pointer;transition:background .2s}
+.book-submit:hover{background:var(--whatsapp-dark)}
+.book-est{grid-column:1/-1;text-align:center;font-size:0.92rem;color:var(--text-light);padding:10px;background:var(--cream);border-radius:9px}
+.book-est strong{color:var(--green);font-size:1.1rem}
+@media(max-width:640px){.book-form{grid-template-columns:1fr;padding:20px}}
+
+/* DOWNLOAD BAR */
+.plan-dl{padding:40px 0;text-align:center}
+.plan-dl a{margin:0 6px}
+</style>
+</head>
+<body>
+<div data-include="header"></div>
+
+<section class="page-hero" style="background:linear-gradient(rgba(9,50,80,0.66),rgba(9,50,80,0.82)),url('/images/surroundings/3.jpg') center/cover">
+  <div class="container">
+    <span class="kicker">Plan your stay · Everything in one place</span>
+    <h1>Your JuneGiri stay,<br>sorted in 2 minutes.</h1>
+    <p>Rates, what's included, things to do, and one-tap WhatsApp booking — all here. No back-and-forth needed.</p>
+    <div class="breadcrumb"><a href="index.html">Home</a> / Plan Your Stay</div>
+  </div>
+</section>
+
+<!-- QUICK FACTS -->
+<section class="plan-quick">
+  <div class="container">
+    <div class="plan-quick-row">
+      <span><span class="ic">🍽️</span> All 3 veg meals + tea included</span>
+      <span><span class="ic">🧘</span> Yoga &amp; meditation daily</span>
+      <span><span class="ic">🐾</span> Pet &amp; family friendly</span>
+      <span><span class="ic">🚕</span> Free Haridwar pickup</span>
+      <span><span class="ic">📍</span> Edge of Rajaji National Park</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="plan-price">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="kicker">Simple, all-inclusive pricing</span>
+      <h2 class="section-title">Two ways to book.</h2>
+      <p class="section-sub">Most guests choose the per-person all-inclusive plan — stay, all meals, and tea, one simple price. Prefer a whole room? Pick a room type instead.</p>
+    </div>
+    <div class="plan-price-grid fade-up">
+
+      <div class="price-card feature">
+        <div class="ptag">All-Inclusive · Per Person</div>
+        <div class="pamount">₹2,500 <small>/ person / day</small></div>
+        <p class="pnote">The simplest way to stay. Everything below is included — you just show up.</p>
+        <ul>
+          <li>Comfortable room (shared on twin basis)</li>
+          <li>Breakfast, lunch &amp; dinner — all vegetarian, Pahadi home-style</li>
+          <li>Unlimited tea through the day</li>
+          <li>Morning yoga &amp; evening meditation</li>
+          <li>Jungle &amp; village walks with our team</li>
+          <li>Free pickup from Haridwar railway station</li>
+        </ul>
+        <a href="#book" class="btn btn-wa btn-lg" style="width:100%;justify-content:center;margin-top:22px">Book this plan →</a>
+      </div>
+
+      <div class="price-card">
+        <div class="ptag">Per Room · Per Night</div>
+        <p class="pnote" style="margin-top:0">Book a whole room/cottage. Breakfast &amp; dinner included; lunch &amp; activities add-on.</p>
+        <div class="room-rate"><span>Jungle View Room<small>Queen bed · sleeps 2</small></span><strong>₹2,500<small>/night</small></strong></div>
+        <div class="room-rate"><span>River Cottage<small>King bed · sleeps 2</small></span><strong>₹3,500<small>/night</small></strong></div>
+        <div class="room-rate"><span>Farm Stay Suite<small>2 BR · sleeps 4</small></span><strong>₹4,000<small>/night</small></strong></div>
+        <a href="stay.html" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:22px">See room details →</a>
+      </div>
+
+    </div>
+    <p style="text-align:center;color:var(--text-light);font-size:0.88rem;margin-top:24px">Children under 5 stay free · 5–12 at 50% · 30% deposit confirms your booking · Full refund up to 14 days before check-in</p>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="plan-acts">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="kicker">Things to do</span>
+      <h2 class="section-title">12+ experiences, right at our doorstep.</h2>
+      <p class="section-sub">Mix and match during your stay. We help arrange everything — guides, timings, and transport.</p>
+    </div>
+    <div class="acts-grid fade-up">
+      <div class="acts-col">
+        <h3>🥾 Treks &amp; Nature Walks</h3>
+        <div class="sub">Guided, all fitness levels</div>
+        <ul>
+          <li>Neelkanth Mahadev temple trek</li>
+          <li>Dhotia village trek</li>
+          <li>Jungle walk (Rajaji forest edge)</li>
+          <li>Village walk &amp; local life</li>
+          <li>Hidden waterfalls</li>
+        </ul>
+      </div>
+      <div class="acts-col">
+        <h3>🕉️ Spiritual Rishikesh</h3>
+        <div class="sub">Day trips we arrange for you</div>
+        <ul>
+          <li>Swarg Ashram</li>
+          <li>Tapovan</li>
+          <li>Beatles Ashram (Chaurasi Kutia)</li>
+          <li>Ganga Aarti at Triveni Ghat</li>
+        </ul>
+      </div>
+      <div class="acts-col">
+        <h3>🧘 Wellness</h3>
+        <div class="sub">On-property, daily</div>
+        <ul>
+          <li>Yoga classes</li>
+          <li>Meditation classes</li>
+          <li>Panchakarma treatment &amp; spa</li>
+        </ul>
+      </div>
+      <div class="acts-col">
+        <h3>🌿 Farm &amp; Food</h3>
+        <div class="sub">Farm-to-table living</div>
+        <ul>
+          <li>Hydroponics farm visit</li>
+          <li>Pahadi cooking — watch &amp; learn</li>
+          <li>Organic garden tour</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section class="plan-photos">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="kicker">A peek inside</span>
+      <h2 class="section-title">This is JuneGiri.</h2>
+    </div>
+    <div class="plan-photo-grid fade-up">
+      <div class="p wide" style="background-image:url('/images/gallery/g01.jpg')"></div>
+      <div class="p" style="background-image:url('/images/rooms/1.jpg')"></div>
+      <div class="p" style="background-image:url('/images/food/pahadi-meal.jpg')"></div>
+      <div class="p" style="background-image:url('/images/surroundings/9.jpg')"></div>
+      <div class="p" style="background-image:url('/images/gallery/g30.jpg')"></div>
+      <div class="p wide" style="background-image:url('/images/surroundings/15.jpg')"></div>
+      <div class="p" style="background-image:url('/images/food/organic-farm.jpg')"></div>
+      <div class="p" style="background-image:url('/images/surroundings/waterfall.jpg')"></div>
+    </div>
+    <p style="text-align:center;margin-top:28px"><a href="gallery.html" class="btn btn-outline">See full gallery + video →</a></p>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section class="plan-book" id="book">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="kicker">Ready to book?</span>
+      <h2 class="section-title">Tell us your dates — we reply in an hour.</h2>
+      <p class="section-sub">Fill this in and tap the button. It opens WhatsApp with your details ready to send. We confirm availability and hold your dates with a 30% deposit.</p>
+    </div>
+    <form class="book-form fade-up" onsubmit="return junegiriBook(event)">
+      <div class="book-field">
+        <label>Plan</label>
+        <select name="plan" id="bk-plan" onchange="bkEstimate()">
+          <option value="perperson">All-Inclusive (₹2,500/person/day)</option>
+          <option value="jungle">Jungle View Room (₹2,500/night)</option>
+          <option value="river">River Cottage (₹3,500/night)</option>
+          <option value="farm">Farm Stay Suite (₹4,000/night)</option>
+        </select>
+      </div>
+      <div class="book-field">
+        <label>Guests</label>
+        <select name="guests" id="bk-guests" onchange="bkEstimate()">
+          <option value="1">1 Adult</option>
+          <option value="2" selected>2 Adults</option>
+          <option value="3">2 Adults · 1 Child</option>
+          <option value="4">2 Adults · 2 Children</option>
+          <option value="5">Group of 5+</option>
+        </select>
+      </div>
+      <div class="book-field"><label>Check-in</label><input type="date" name="checkin" id="bk-in" onchange="bkEstimate()" required></div>
+      <div class="book-field"><label>Check-out</label><input type="date" name="checkout" id="bk-out" onchange="bkEstimate()" required></div>
+      <div class="book-field full"><label>Your name</label><input type="text" name="name" placeholder="So we know who we're chatting with"></div>
+      <div class="book-est full" id="bk-est">Pick your plan, dates &amp; guests to see an estimate.</div>
+      <button type="submit" class="book-submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.3c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5s0-.4 0-.5c0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.7.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.3c1.4.7 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        Send booking request on WhatsApp
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="plan-dl">
+  <div class="container">
+    <p style="color:var(--text-light);margin-bottom:16px">Want to save this or share it offline?</p>
+    <a href="/junegiri-brochure.pdf" class="btn btn-primary" download>↓ Download brochure (PDF)</a>
+    <a href="https://wa.me/919873897652?text=Hi%21%20I%27d%20like%20to%20plan%20a%20stay%20at%20JuneGiri%20Farms." class="btn btn-outline" target="_blank" rel="noopener">Chat with us</a>
+  </div>
+</section>
+
+<div data-include="footer"></div>
+<script>
+function bkEstimate(){
+  var plan=document.getElementById('bk-plan').value;
+  var g=parseInt(document.getElementById('bk-guests').value)||1;
+  var di=document.getElementById('bk-in').value, doo=document.getElementById('bk-out').value;
+  var nights=0;
+  if(di&&doo){var d1=new Date(di),d2=new Date(doo);nights=Math.round((d2-d1)/86400000);}
+  var el=document.getElementById('bk-est');
+  if(nights<=0){el.innerHTML='Pick your plan, dates &amp; guests to see an estimate.';return null;}
+  var rate, total, label;
+  if(plan==='perperson'){rate=2500;total=rate*g*nights;label=g+' guest(s) × '+nights+' day(s) × ₹2,500 all-inclusive';}
+  else{
+    var rr={jungle:2500,river:3500,farm:4000}[plan];
+    total=rr*nights;label=nights+' night(s) × ₹'+rr.toLocaleString('en-IN');
+  }
+  el.innerHTML=label+' = <strong>≈ ₹'+total.toLocaleString('en-IN')+'</strong> <span style="font-size:0.8rem">(we confirm exact rate on WhatsApp)</span>';
+  return {total:total,nights:nights};
+}
+function junegiriBook(e){
+  e.preventDefault();
+  var f=e.target;
+  var planTxt=document.getElementById('bk-plan').selectedOptions[0].text;
+  var g=document.getElementById('bk-guests').selectedOptions[0].text;
+  var di=f.checkin.value,doo=f.checkout.value,name=f.name.value;
+  var est=bkEstimate();
+  var msg='Hi JuneGiri! I\'d like to book a stay.\n\n';
+  if(name) msg+='Name: '+name+'\n';
+  msg+='Plan: '+planTxt+'\nGuests: '+g+'\nCheck-in: '+di+'\nCheck-out: '+doo+'\n';
+  if(est) msg+='Estimated total: ≈ ₹'+est.total.toLocaleString('en-IN')+'\n';
+  msg+='\nPlease confirm availability and exact rate. Thank you!';
+  window.open('https://wa.me/919873897652?text='+encodeURIComponent(msg),'_blank');
+  return false;
+}
+</script>
+<script src="js/main.js?v=2026052304"></script>
+</body>
+</html>
