@@ -9,160 +9,179 @@
 <style>
 @page{size:A4;margin:0}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;color:#1E293B;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.page{width:210mm;min-height:297mm;padding:0;position:relative;page-break-after:always;overflow:hidden}
-.page:last-child{page-break-after:auto}
+html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:'Inter',sans-serif;color:#1E293B}
 h1,h2,h3,h4{font-family:'Poppins',sans-serif}
-:root{--navy:#0F4C75;--cyan:#00A8E8;--gold:#F0A500;--ink:#0F172A;--light:#475569;--cream:#F4F8FB}
+:root{--navy:#0F4C75;--navy2:#093250;--cyan:#00A8E8;--sky:#7FD4FF;--gold:#F0A500;--ink:#0F172A;--light:#64748B;--cream:#F4F8FB;--line:#E6EDF3}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
+.page:last-child{page-break-after:auto}
 
-/* COVER */
-.cover{height:297mm;background:linear-gradient(rgba(9,50,80,0.45),rgba(9,50,80,0.78)),url('https://junegirifarms.com/images/surroundings/3.jpg') center/cover;color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:24mm 20mm}
-.cover .logo{font-family:'Poppins';font-weight:800;font-size:30pt;letter-spacing:-0.5px}
-.cover .logo span{color:#7FD4FF}
-.cover-mid{margin-top:auto}
-.cover .kick{display:inline-block;background:rgba(0,168,232,0.3);border:1px solid rgba(127,212,255,0.6);color:#fff;padding:5pt 12pt;border-radius:30pt;font-size:9pt;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14pt}
-.cover h1{font-size:38pt;line-height:1.05;font-weight:800;margin-bottom:12pt}
-.cover p{font-size:13pt;color:rgba(255,255,255,0.9);max-width:130mm;line-height:1.5}
-.cover-foot{display:flex;justify-content:space-between;align-items:flex-end;font-size:10pt;color:rgba(255,255,255,0.9)}
-.cover-foot strong{color:#7FD4FF}
+/* ---------- COVER ---------- */
+.cover{background:linear-gradient(rgba(9,50,80,0.42),rgba(9,50,80,0.80)),url('https://junegirifarms.com/images/surroundings/3.jpg') center/cover;color:#fff;padding:22mm 18mm;justify-content:space-between}
+.cover .logo{font-family:'Poppins';font-weight:800;font-size:26pt;letter-spacing:-0.5px}
+.cover .logo span{color:var(--sky)}
+.cover .kick{display:inline-block;background:rgba(0,168,232,0.28);border:1px solid rgba(127,212,255,0.6);color:#fff;padding:5pt 13pt;border-radius:30pt;font-size:8.5pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14pt}
+.cover h1{font-size:40pt;line-height:1.03;font-weight:800;margin-bottom:12pt}
+.cover .sub{font-size:12.5pt;color:rgba(255,255,255,0.92);max-width:135mm;line-height:1.5}
+.cover-foot{display:flex;justify-content:space-between;align-items:flex-end;font-size:10pt;color:rgba(255,255,255,0.92);border-top:1px solid rgba(255,255,255,0.25);padding-top:12pt}
+.cover-foot strong{color:var(--sky)}
 
-/* CONTENT PAGE */
-.content{padding:18mm 20mm}
-.sec-kick{font-family:'Poppins';font-size:9pt;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:5pt}
-.sec-h{font-size:20pt;font-weight:800;color:var(--ink);margin-bottom:14pt}
-.lead{font-size:11pt;color:var(--light);line-height:1.6;margin-bottom:18pt}
+/* ---------- SHARED PAGE HEADER ---------- */
+.phead{background:var(--navy);color:#fff;padding:13mm 18mm 11mm}
+.phead .pk{font-family:'Poppins';font-size:8.5pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--sky);margin-bottom:6pt}
+.phead h2{font-size:23pt;font-weight:800;line-height:1.05}
+.phead p{font-size:10.5pt;color:rgba(255,255,255,0.82);margin-top:7pt;max-width:150mm;line-height:1.5}
+.pbody{flex:1;padding:11mm 18mm 0;display:flex;flex-direction:column}
 
-.price-row{display:flex;gap:10mm;margin-bottom:16pt}
-.pc{flex:1;border:1.5pt solid #E2E8F0;border-radius:10pt;padding:14pt}
-.pc.feat{border-color:var(--gold);background:#FFF8EC}
-.pc .t{font-family:'Poppins';font-size:8pt;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6pt}
-.pc .amt{font-family:'Poppins';font-size:24pt;font-weight:800;color:var(--navy);line-height:1}
+/* ---------- PRICING ---------- */
+.price-row{display:flex;gap:8mm}
+.pc{flex:1;border:1.5pt solid var(--line);border-radius:12pt;padding:15pt 16pt;display:flex;flex-direction:column}
+.pc.feat{border:2pt solid var(--gold);background:#FFFaF0;box-shadow:0 6pt 18pt rgba(240,165,0,0.12)}
+.pc .badge{align-self:flex-start;background:var(--gold);color:#fff;font-family:'Poppins';font-size:7pt;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:3pt 9pt;border-radius:20pt;margin-bottom:9pt}
+.pc .t{font-family:'Poppins';font-size:8pt;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);margin-bottom:5pt}
+.pc .amt{font-family:'Poppins';font-size:26pt;font-weight:800;color:var(--navy);line-height:1;margin-bottom:11pt}
 .pc .amt small{font-size:10pt;color:var(--light);font-weight:500}
-.pc ul{list-style:none;margin-top:10pt}
-.pc li{font-size:9.5pt;padding:4pt 0 4pt 14pt;position:relative;color:var(--ink);line-height:1.4}
+.pc ul{list-style:none}
+.pc li{font-size:9.5pt;padding:4.5pt 0 4.5pt 16pt;position:relative;color:var(--ink);line-height:1.35}
 .pc li::before{content:'✓';position:absolute;left:0;color:#16A34A;font-weight:800}
-.rr{display:flex;justify-content:space-between;font-size:9.5pt;padding:5pt 0;border-bottom:0.5pt solid #E2E8F0}
-.rr:last-child{border:none}
-.rr strong{color:var(--navy);font-family:'Poppins'}
+.rr{display:flex;justify-content:space-between;align-items:baseline;font-size:10pt;padding:7pt 0;border-bottom:0.75pt solid var(--line)}
+.rr:last-of-type{border:none}
+.rr .rn{color:var(--ink);font-weight:600}
+.rr .rn small{display:block;color:#94A3B8;font-size:7.5pt;font-weight:400;margin-top:1pt}
+.rr .rp{font-family:'Poppins';color:var(--navy);font-weight:800;font-size:12pt;white-space:nowrap}
+.rr .rp small{font-size:7.5pt;color:#94A3B8;font-weight:500}
+.pc .foot{margin-top:auto;font-size:8pt;color:#94A3B8;line-height:1.4;padding-top:10pt}
 
-.incl{background:var(--cream);border-radius:10pt;padding:14pt 16pt;margin-bottom:6pt}
-.incl-grid{display:flex;flex-wrap:wrap;gap:8pt 18pt}
-.incl-grid span{font-size:9.5pt;font-weight:600;color:var(--ink)}
+/* INCLUDES STRIP */
+.inc{background:var(--cream);border-radius:12pt;padding:14pt 18pt;margin-top:8mm}
+.inc .ik{font-family:'Poppins';font-size:8pt;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:10pt}
+.inc-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:9pt 14pt}
+.inc-grid span{font-size:9pt;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6pt}
+.finep{font-size:8pt;color:#94A3B8;text-align:center;margin-top:7mm}
 
-/* ACTIVITIES */
-.acts{display:flex;flex-wrap:wrap;gap:8mm}
-.acol{flex:1 1 40%;min-width:70mm}
-.acol h3{font-size:12pt;margin-bottom:8pt;color:var(--navy)}
+/* FULL-BLEED PHOTO BAND */
+.band{margin-top:auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:0;height:62mm}
+.band div{background-size:cover;background-position:center}
+
+/* ---------- ACTIVITIES ---------- */
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:7mm 9mm}
+.acol{border:1.25pt solid var(--line);border-radius:11pt;padding:13pt 15pt}
+.acol h3{font-size:12.5pt;color:var(--navy);margin-bottom:9pt;display:flex;align-items:center;gap:7pt}
+.acol h3 .e{font-size:14pt}
 .acol ul{list-style:none}
-.acol li{font-size:9.5pt;padding:3.5pt 0 3.5pt 14pt;position:relative;color:#334155}
-.acol li::before{content:'•';position:absolute;left:2pt;color:var(--cyan);font-weight:800}
+.acol li{font-size:9.5pt;padding:3.5pt 0 3.5pt 15pt;position:relative;color:#334155;line-height:1.3}
+.acol li::before{content:'';position:absolute;left:1pt;top:7pt;width:5pt;height:5pt;border-radius:50%;background:var(--cyan)}
 
-/* PHOTOS */
-.pgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4mm;margin-top:12pt}
-.pgrid div{aspect-ratio:1;background-size:cover;background-position:center;border-radius:8pt}
-.pgrid div.w{grid-column:span 2;aspect-ratio:2/1}
-
-/* CONTACT FOOTER */
-.cfoot{background:linear-gradient(135deg,var(--navy),#093250);color:#fff;border-radius:12pt;padding:18pt 20pt;margin-top:16pt;display:flex;justify-content:space-between;align-items:center}
-.cfoot h3{font-size:15pt;margin-bottom:4pt;color:#fff}
-.cfoot p{font-size:10pt;color:rgba(255,255,255,0.85)}
-.cfoot .wa{background:#25D366;color:#fff;padding:10pt 18pt;border-radius:30pt;font-weight:800;font-size:11pt;font-family:'Poppins';white-space:nowrap}
-.muted{font-size:8.5pt;color:var(--light);text-align:center;margin-top:10pt}
+/* ---------- CONTACT CTA ---------- */
+.cta{background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;padding:18pt 22pt;display:flex;justify-content:space-between;align-items:center;gap:16pt}
+.cta h3{font-size:17pt;margin-bottom:5pt}
+.cta p{font-size:10pt;color:rgba(255,255,255,0.85);line-height:1.45}
+.cta .wa{background:#25D366;color:#fff;padding:11pt 20pt;border-radius:32pt;font-family:'Poppins';font-weight:800;font-size:13pt;white-space:nowrap;text-align:center}
+.cta .wa small{display:block;font-size:7.5pt;font-weight:500;opacity:0.9;letter-spacing:0.5px}
+.pfoot{background:var(--ink);color:rgba(255,255,255,0.6);font-size:7.5pt;text-align:center;padding:7pt}
 </style>
 </head>
 <body>
 
-<!-- COVER -->
+<!-- ============ PAGE 1 · COVER ============ -->
 <div class="page cover">
   <div class="logo">June<span>Giri</span> Farms</div>
-  <div class="cover-mid">
+  <div>
     <span class="kick">Wilderness Homestay · Rishikesh</span>
     <h1>A family home<br>at the edge of<br>the jungle.</h1>
-    <p>Stay, eat Pahadi home-cooked meals, trek to waterfalls, practise yoga at sunrise — at the edge of Rajaji National Park, since 2020.</p>
+    <p class="sub">Stay, eat Pahadi home-cooked meals, trek to waterfalls, and practise yoga at sunrise — at the edge of Rajaji National Park, since 2020.</p>
   </div>
   <div class="cover-foot">
     <div>junegirifarms.com</div>
-    <div>WhatsApp <strong>+91 98738 97652</strong> · +91 93101 37173</div>
+    <div>WhatsApp <strong>+91 98738 97652</strong> &nbsp;·&nbsp; +91 93101 37173</div>
   </div>
 </div>
 
-<!-- PAGE 2: RATES + INCLUDED -->
+<!-- ============ PAGE 2 · STAY & RATES ============ -->
 <div class="page">
-  <div class="content">
-    <div class="sec-kick">Simple, all-inclusive pricing</div>
-    <div class="sec-h">Two ways to book</div>
+  <div class="phead">
+    <div class="pk">Simple, all-inclusive pricing</div>
+    <h2>Two ways to stay</h2>
+    <p>Most guests choose the per-person plan — stay, all meals and tea in one simple price. Prefer a private room? Pick a room type.</p>
+  </div>
+  <div class="pbody">
     <div class="price-row">
       <div class="pc feat">
+        <span class="badge">Most guests pick this</span>
         <div class="t">All-Inclusive · Per Person</div>
-        <div class="amt">₹2,500 <small>/ person / day</small></div>
+        <div class="amt">₹2,500<small> / person / day</small></div>
         <ul>
           <li>Room on twin-share basis</li>
-          <li>Breakfast, lunch &amp; dinner (all veg)</li>
-          <li>Unlimited tea all day</li>
-          <li>Morning yoga &amp; meditation</li>
-          <li>Jungle &amp; village walks</li>
-          <li>Free Haridwar station pickup</li>
+          <li>Breakfast, lunch &amp; dinner — all veg</li>
+          <li>Unlimited tea through the day</li>
+          <li>Morning yoga &amp; evening meditation</li>
+          <li>Guided jungle &amp; village walks</li>
+          <li>Free pickup from Haridwar station</li>
         </ul>
       </div>
       <div class="pc">
         <div class="t">Per Room · Per Night</div>
-        <div class="rr"><span>Jungle View Room<br><small style="color:#94A3B8">Queen · sleeps 2</small></span><strong>₹2,500</strong></div>
-        <div class="rr"><span>River Cottage<br><small style="color:#94A3B8">King · sleeps 2</small></span><strong>₹3,500</strong></div>
-        <div class="rr"><span>Farm Stay Suite<br><small style="color:#94A3B8">2 BR · sleeps 4</small></span><strong>₹4,000</strong></div>
-        <p style="font-size:8.5pt;color:#94A3B8;margin-top:10pt;line-height:1.4">Breakfast &amp; dinner included. Lunch &amp; activities add-on.</p>
+        <div class="rr"><span class="rn">Jungle View Room<small>Queen bed · sleeps 2</small></span><span class="rp">₹2,500<small>/night</small></span></div>
+        <div class="rr"><span class="rn">River Cottage<small>King bed · sleeps 2</small></span><span class="rp">₹3,500<small>/night</small></span></div>
+        <div class="rr"><span class="rn">Farm Stay Suite<small>2 bedrooms · sleeps 4</small></span><span class="rp">₹4,000<small>/night</small></span></div>
+        <div class="foot">Breakfast &amp; dinner included with every room. Lunch and activities can be added on. Ideal for couples and families who want their own space.</div>
       </div>
     </div>
-    <div class="incl">
-      <div class="sec-kick" style="margin-bottom:8pt">Every stay includes</div>
-      <div class="incl-grid">
-        <span>🍽️ 3 veg meals + tea</span><span>🧘 Daily yoga &amp; meditation</span><span>🐾 Pet &amp; family friendly</span>
-        <span>🚕 Free Haridwar pickup</span><span>🌿 Organic farm produce</span><span>📶 Wi-Fi across property</span>
-        <span>🔥 Bonfire evenings</span><span>⛰️ Forest-edge location</span>
-      </div>
-    </div>
-    <p class="muted">Children under 5 free · 5–12 at 50% · 30% deposit confirms booking · Full refund up to 14 days before check-in</p>
 
-    <div style="margin-top:20pt">
-      <div class="sec-kick">A peek inside</div>
-      <div class="pgrid">
-        <div class="w" style="background-image:url('https://junegirifarms.com/images/gallery/g01.jpg')"></div>
-        <div style="background-image:url('https://junegirifarms.com/images/rooms/1.jpg')"></div>
-        <div style="background-image:url('https://junegirifarms.com/images/food/pahadi-meal.jpg')"></div>
-        <div style="background-image:url('https://junegirifarms.com/images/surroundings/15.jpg')"></div>
-        <div style="background-image:url('https://junegirifarms.com/images/surroundings/waterfall.jpg')"></div>
+    <div class="inc">
+      <div class="ik">Every stay includes</div>
+      <div class="inc-grid">
+        <span>🍽️ 3 veg meals + tea</span>
+        <span>🧘 Yoga &amp; meditation</span>
+        <span>🐾 Pet &amp; family friendly</span>
+        <span>🚕 Free Haridwar pickup</span>
+        <span>🌿 Organic farm produce</span>
+        <span>📶 Wi-Fi across property</span>
+        <span>🔥 Bonfire evenings</span>
+        <span>⛰️ Forest-edge location</span>
       </div>
+    </div>
+
+    <p class="finep">Children under 5 stay free · 5–12 at 50% · 30% deposit confirms your booking · Full refund up to 14 days before check-in</p>
+
+    <div class="band">
+      <div style="background-image:url('https://junegirifarms.com/images/gallery/g01.jpg')"></div>
+      <div style="background-image:url('https://junegirifarms.com/images/rooms/1.jpg')"></div>
+      <div style="background-image:url('https://junegirifarms.com/images/food/pahadi-meal.jpg')"></div>
     </div>
   </div>
 </div>
 
-<!-- PAGE 3: ACTIVITIES + CONTACT -->
+<!-- ============ PAGE 3 · THINGS TO DO + BOOK ============ -->
 <div class="page">
-  <div class="content">
-    <div class="sec-kick">Things to do</div>
-    <div class="sec-h">12+ experiences at our doorstep</div>
-    <p class="lead">Mix and match during your stay — we arrange guides, timings and transport.</p>
+  <div class="phead">
+    <div class="pk">Things to do</div>
+    <h2>12+ experiences at our doorstep</h2>
+    <p>Mix and match during your stay — we arrange guides, timings and transport for everything.</p>
+  </div>
+  <div class="pbody" style="padding-bottom:0">
     <div class="acts">
       <div class="acol">
-        <h3>🥾 Treks &amp; Nature Walks</h3>
+        <h3><span class="e">🥾</span> Treks &amp; Nature Walks</h3>
         <ul>
           <li>Neelkanth Mahadev temple trek</li>
           <li>Dhotia village trek</li>
-          <li>Jungle walk (Rajaji forest edge)</li>
+          <li>Jungle walk · Rajaji forest edge</li>
           <li>Village walk &amp; local life</li>
           <li>Hidden waterfalls</li>
         </ul>
       </div>
       <div class="acol">
-        <h3>🕉️ Spiritual Rishikesh</h3>
+        <h3><span class="e">🕉️</span> Spiritual Rishikesh</h3>
         <ul>
           <li>Swarg Ashram</li>
           <li>Tapovan</li>
-          <li>Beatles Ashram (Chaurasi Kutia)</li>
+          <li>Beatles Ashram · Chaurasi Kutia</li>
           <li>Ganga Aarti at Triveni Ghat</li>
         </ul>
       </div>
       <div class="acol">
-        <h3>🧘 Wellness</h3>
+        <h3><span class="e">🧘</span> Wellness</h3>
         <ul>
           <li>Yoga classes</li>
           <li>Meditation classes</li>
@@ -170,7 +189,7 @@ h1,h2,h3,h4{font-family:'Poppins',sans-serif}
         </ul>
       </div>
       <div class="acol">
-        <h3>🌿 Farm &amp; Food</h3>
+        <h3><span class="e">🌿</span> Farm &amp; Food</h3>
         <ul>
           <li>Hydroponics farm visit</li>
           <li>Pahadi cooking — watch &amp; learn</li>
@@ -179,21 +198,21 @@ h1,h2,h3,h4{font-family:'Poppins',sans-serif}
       </div>
     </div>
 
-    <div class="pgrid" style="margin-top:18pt">
-      <div style="background-image:url('https://junegirifarms.com/images/gallery/g30.jpg')"></div>
+    <div class="band" style="height:58mm;margin-top:9mm">
+      <div style="background-image:url('https://junegirifarms.com/images/surroundings/waterfall.jpg')"></div>
       <div style="background-image:url('https://junegirifarms.com/images/surroundings/9.jpg')"></div>
       <div style="background-image:url('https://junegirifarms.com/images/food/organic-farm.jpg')"></div>
     </div>
 
-    <div class="cfoot">
+    <div class="cta">
       <div>
         <h3>Ready to book your stay?</h3>
-        <p>WhatsApp us your dates — we reply within an hour.<br>junegirifarms.com/plan</p>
+        <p>WhatsApp us your dates — we reply within an hour.<br>Or plan &amp; book online at <strong>junegirifarms.com/plan</strong></p>
       </div>
-      <div class="wa">+91 98738 97652</div>
+      <div class="wa">+91 98738 97652<small>WHATSAPP US</small></div>
     </div>
-    <p class="muted">Junegiri Farms Pvt. Ltd. · House No-85, Post-Maral, Yamkeshwar, Pauri Garhwal, Uttarakhand 249304</p>
   </div>
+  <div class="pfoot">Junegiri Farms Pvt. Ltd. · House No-85, Post-Maral, Yamkeshwar, Pauri Garhwal, Uttarakhand 249304 · junegirifarms@gmail.com</div>
 </div>
 
 </body>
