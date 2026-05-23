@@ -70,10 +70,18 @@
 
   }
 
+  // Version from this script's own ?v= so partials bust cache in lockstep with deploys
+  var VER = (function(){
+    var s = document.currentScript || document.querySelector('script[src*="main.js"]');
+    var m = s && s.src.match(/[?&]v=([^&]+)/);
+    return m ? m[1] : '';
+  })();
+
   // Load partials, then init
   function loadPartial(slot){
     var name = slot.getAttribute('data-include');
-    return fetch('partials/'+name+'.html',{cache:'no-cache'}).then(function(r){return r.text();}).then(function(html){
+    var url = 'partials/'+name+'.html' + (VER ? '?v='+VER : '');
+    return fetch(url,{cache:'no-cache'}).then(function(r){return r.text();}).then(function(html){
       slot.outerHTML = html;
     }).catch(function(){slot.innerHTML='';});
   }
