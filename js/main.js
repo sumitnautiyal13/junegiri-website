@@ -68,23 +68,6 @@
       });
     });
 
-    // Sticky booking widget: shrink padding when it sticks to top
-    var widget = document.querySelector('.cm-widget');
-    if(widget){
-      var sentinel = document.createElement('div');
-      sentinel.style.cssText='position:absolute;top:0;height:1px;width:1px;pointer-events:none';
-      widget.parentNode.insertBefore(sentinel, widget);
-      // Detect when widget hits the top (sticky state) via IntersectionObserver on a sentinel above it
-      if('IntersectionObserver' in window){
-        var stickyObs = new IntersectionObserver(function(entries){
-          entries.forEach(function(e){
-            // When sentinel goes out of view above the viewport, widget is stuck
-            widget.classList.toggle('stuck', !e.isIntersecting && e.boundingClientRect.top < 0);
-          });
-        },{threshold:[0],rootMargin:'-84px 0px 0px 0px'});
-        stickyObs.observe(sentinel);
-      }
-    }
   }
 
   // Load partials, then init
