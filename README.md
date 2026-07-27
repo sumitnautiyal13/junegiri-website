@@ -11,7 +11,15 @@ The official website for **JuneGiri Farms Pvt. Ltd.** — a family-run resort, y
 
 - **Pure HTML / CSS / JavaScript** — no framework, no build step
 - **Cloudflare Pages** — hosting + global edge CDN
-- **Partials system** — shared header/footer loaded via `fetch()` from `/partials/`
+- **Partials system** — shared header/footer kept in `/partials/` and inlined into every page by `./build.sh`
+
+> ⚠️ **Edit a partial, then run `./build.sh`.** The header and footer used to be
+> fetched client-side, which meant the HTML served to crawlers contained no
+> internal links at all. They are now baked into each page at build time.
+> `build.sh` also regenerates `sitemap.xml` and the generated JSON-LD blocks,
+> and rewrites internal links to the extensionless URLs (`/stay`, not
+> `stay.html`) that the canonicals and sitemap use. `./build.sh --check` fails
+> if anything is stale — useful before committing.
 
 ## Structure
 
