@@ -27,7 +27,9 @@
     }
 
     // Highlight active nav
-    var path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    // URLs are extensionless (/stay), but keep .html working for direct hits
+    var path = (location.pathname.split('/').pop() || 'index').toLowerCase();
+    path = path.replace(/\.html$/,'') + '.html';
     var navMap = {
       'index.html':'home','stay.html':'stay','room-jungle.html':'stay','room-river.html':'stay','room-farm.html':'stay','gallery.html':'stay',
       'retreat.html':'retreat','corporate.html':'retreat','ttc.html':'retreat',
