@@ -16,7 +16,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://junegirifarms.com"
 
 # Excluded from the deploy via .assetsignore, so it must stay out of the sitemap.
-SKIP = {"brochure-print.html"}
+SKIP = {"brochure-print.html", "payment.html"}  # payment: noindex transactional page, not for search
 
 # changefreq + priority per page. Anything not listed falls back to DEFAULT.
 RULES = {
