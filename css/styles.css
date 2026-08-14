@@ -157,7 +157,7 @@ p{margin:0}
 .mega-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
 .mega-grid.cols-2{grid-template-columns:1fr 1fr;gap:28px}
 .mega-grid.cols-1{grid-template-columns:1fr}
-.mega-col h5{font-family:'Poppins',sans-serif;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:12px;font-weight:700}
+.mega-col .mega-label{margin:0 0 12px;font-family:'Poppins',sans-serif;font-size:0.7rem;line-height:1.2;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);font-weight:700}
 .mega-list{list-style:none;margin:0;padding:0;display:grid;gap:2px}
 .mega-list a{display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:8px;color:var(--ink);font-size:0.92rem;font-weight:500;transition:background .15s,color .15s;text-decoration:none}
 .mega-list a:hover{background:var(--cream);color:var(--green)}
@@ -171,7 +171,7 @@ p{margin:0}
 .mega-feature::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,0.78) 100%)}
 .mega-feature > *{position:relative;z-index:1}
 .mega-feature .tag{font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:#7FD4FF;font-weight:700;margin-bottom:6px}
-.mega-feature h4{color:#fff;font-size:1.05rem;margin-bottom:4px;line-height:1.2}
+.mega-feature .mega-feature-title{margin:0 0 4px;font-family:'Poppins','Inter',sans-serif;font-weight:700;letter-spacing:-0.015em;color:#fff;font-size:1.05rem;line-height:1.2}
 .mega-feature p{color:rgba(255,255,255,0.85);font-size:0.8rem;line-height:1.4;margin-bottom:10px}
 .mega-feature .more{font-size:0.78rem;font-weight:700;color:#7FD4FF}
 .nav-cta{display:flex;align-items:center;gap:8px}
@@ -316,7 +316,7 @@ body{padding-top:76px}
   display:flex;align-items:center;justify-content:center;
   color:var(--orange);font-size:1.5rem;
 }
-.why-item h4{margin-bottom:8px;font-size:1.05rem}
+.why-item h3{margin-bottom:8px;font-size:1.05rem}
 .why-item p{color:var(--text-light);font-size:0.88rem;line-height:1.55}
 @media(max-width:900px){.whyus-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.whyus-grid{grid-template-columns:1fr}}
@@ -403,9 +403,10 @@ body{padding-top:76px}
   color:rgba(255,255,255,0.7);transition:all .2s;
 }
 .footer-social a:hover{background:var(--orange);color:var(--white)}
-.footer-col h4{
+.footer-col .footer-col-title{
+  margin:0 0 18px;line-height:1.2;
   color:var(--gold);font-size:0.78rem;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;margin-bottom:18px;font-family:'Inter',sans-serif;
+  text-transform:uppercase;font-family:'Inter',sans-serif;
 }
 .footer-col ul li{margin-bottom:10px}
 .footer-col a{color:rgba(255,255,255,0.7);font-size:0.92rem;transition:color .2s}
@@ -498,7 +499,7 @@ body{padding-top:76px}
   background:var(--white);border:1px solid var(--border);
   padding:32px;border-radius:var(--radius-lg);
 }
-.form h3{margin-bottom:20px}
+.form h2{margin-bottom:20px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .form-field{margin-bottom:14px}
 .form-field label{display:block;font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:6px}
@@ -520,7 +521,7 @@ body{padding-top:76px}
   background:var(--orange-soft);color:var(--orange);
   display:flex;align-items:center;justify-content:center;
 }
-.contact-item h4{font-size:0.9rem;color:var(--ink);margin-bottom:2px}
+.contact-item h3{font-size:0.9rem;color:var(--ink);margin-bottom:2px}
 .contact-item p,.contact-item a{color:var(--text-light);font-size:0.92rem;line-height:1.5}
 .contact-item a:hover{color:var(--orange)}
 
@@ -736,3 +737,8 @@ h1,h2,h3{overflow-wrap:break-word}
   .fade-up{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
   .fade-up.visible{opacity:1;transform:translateY(0)}
 }
+
+/* Heading-outline fix: these sit at their correct semantic depth (h2/h3) but
+   keep the visual weight they had as h3/h4, so the outline change is invisible. */
+.h-section-sub{font-size:clamp(1.25rem,2.5vw,1.75rem)}
+.h-card-title{font-size:1.15rem}

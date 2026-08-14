@@ -13,3 +13,4 @@ python3 tools/inline-partials.py "$@"
 python3 tools/add-schema.py
 python3 tools/add-analytics.py "$@"
 python3 tools/gen-sitemap.py
+python3 tools/gen-redirects.py

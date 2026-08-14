@@ -48,20 +48,60 @@ RULES = {
 DEFAULT = ("monthly", "0.5")
 
 
-def last_modified(path: pathlib.Path) -> str:
-    """Date of the file's last commit; falls back to mtime if untracked."""
-    result = subprocess.run(
-        ["git", "log", "-1", "--format=%cs", "--", path.name],
+# A commit touching more pages than this is a site-wide mechanical pass — a
+# partial re-inline, a schema regen, the analytics rollout — not a content edit.
+# Counting those as "last modified" flattens every lastmod to one date, which is
+# exactly what happened: the analytics commit touched 27 files and reset all 24
+# URLs to the same day, making the field useless as a recrawl signal.
+BULK_COMMIT_FILES = 8
+
+
+# Put this in a commit subject to keep that commit out of lastmod entirely,
+# regardless of size. Use it for anything that rewrites pages without changing
+# what they say: re-inlining partials, regenerating schema, rolling out a tag.
+SKIP_MARKER = "[skip-lastmod]"
+
+
+def _commit_history():
+    """[(date, {files})] newest first, excluding explicitly marked commits."""
+    out = subprocess.run(
+        ["git", "log", "--format=%x00%cs%x01%s", "--name-only"],
         cwd=ROOT, capture_output=True, text=True,
-    )
-    stamp = result.stdout.strip()
-    if stamp:
-        return stamp
+    ).stdout
+    commits = []
+    for chunk in out.split("\x00"):
+        if not chunk.strip():
+            continue
+        lines = [l for l in chunk.splitlines() if l.strip()]
+        date, _, subject = lines[0].partition("\x01")
+        if SKIP_MARKER in subject:
+            continue
+        commits.append((date, set(lines[1:])))
+    return commits
+
+
+def last_modified(path: pathlib.Path, history) -> str:
+    """Date the page's own content last changed.
+
+    Skips bulk mechanical commits so each page keeps a truthful, distinct date.
+    Falls back to the newest commit of any kind, then to mtime if untracked.
+    """
+    newest_any = None
+    for date, files in history:
+        if path.name not in files:
+            continue
+        if newest_any is None:
+            newest_any = date
+        if len(files) <= BULK_COMMIT_FILES:
+            return date
+    if newest_any:
+        return newest_any
     import datetime
     return datetime.date.fromtimestamp(path.stat().st_mtime).isoformat()
 
 
 def main():
+    history = _commit_history()
     pages = sorted(p for p in ROOT.glob("*.html") if p.name not in SKIP)
     # Sitemap order follows priority, highest first, so it reads sensibly.
     pages.sort(key=lambda p: (-float(RULES.get(p.stem, DEFAULT)[1]), p.stem))
@@ -76,7 +116,7 @@ def main():
         lines += [
             "  <url>",
             f"    <loc>{loc}</loc>",
-            f"    <lastmod>{last_modified(page)}</lastmod>",
+            f"    <lastmod>{last_modified(page, history)}</lastmod>",
             f"    <changefreq>{freq}</changefreq>",
             f"    <priority>{priority}</priority>",
             "  </url>",
