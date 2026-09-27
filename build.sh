@@ -17,3 +17,6 @@ python3 tools/gen-redirects.py
 # Re-point the freshly inlined partials at their WebP renditions. Idempotent;
 # run tools/optimise-images.py by hand after adding or replacing an image.
 python3 tools/use-webp.py
+# Must run last: it hashes the final css/js so returning visitors, who are
+# served those files as immutable for a year, actually get the new version.
+python3 tools/stamp-assets.py

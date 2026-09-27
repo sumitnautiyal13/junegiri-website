@@ -136,7 +136,7 @@ p{margin:0}
 .logo img{height:44px;width:auto}
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none;margin:0;padding:0}
 .nav-links > li{position:relative}
-.nav-links > li > a{color:var(--ink);font-weight:500;font-size:0.92rem;transition:color .2s;display:inline-flex;align-items:center;gap:5px;padding:8px 0;text-decoration:none}
+.nav-links > li > a{position:relative;color:var(--ink);font-weight:500;font-size:0.92rem;transition:color .2s;display:inline-flex;align-items:center;gap:5px;padding:8px 0;text-decoration:none}
 .nav-links > li > a:hover{color:var(--orange)}
 .nav-links > li > a.active{color:var(--orange);font-weight:600}
 .nav-links > li > a.has-mega::after{content:'';width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-3px;margin-left:2px;opacity:.6;transition:transform .2s}
@@ -147,13 +147,20 @@ p{margin:0}
   position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(8px);
   background:#fff;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,0.18);
   padding:24px;min-width:560px;opacity:0;visibility:hidden;
-  transition:opacity .22s ease,transform .22s ease;z-index:200;
+  transition:opacity .22s ease,transform .22s ease,visibility .22s ease;z-index:200;
   border:1px solid var(--border);
+  /* Hold the panel open briefly after the pointer leaves, so a slightly
+     off-course move towards a sub-item does not dismiss it. Opening stays
+     instant - the delay is cancelled on the :hover rule below. */
+  transition-delay:.35s;
 }
 .mega.mega-sm{min-width:280px;padding:18px}
 .mega.mega-lg{min-width:720px}
-.mega::before{content:'';position:absolute;top:-8px;left:0;right:0;height:14px;background:transparent}
-.nav-links > li:hover > .mega,.nav-links > li:focus-within > .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.mega::before{content:'';position:absolute;top:-26px;left:0;right:0;height:26px;background:transparent}
+/* Widen the catch area to the full panel width while the menu is open, so a
+   diagonal move towards an item at either edge keeps the pointer inside it. */
+.nav-links > li:hover > a.has-mega::before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:100%;width:560px;height:26px}
+.nav-links > li:hover > .mega,.nav-links > li:focus-within > .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);transition-delay:0s}
 .mega-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
 .mega-grid.cols-2{grid-template-columns:1fr 1fr;gap:28px}
 .mega-grid.cols-1{grid-template-columns:1fr}
