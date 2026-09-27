@@ -439,6 +439,19 @@ body{padding-top:76px}
 @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px}}
 @media(max-width:640px){.footer-grid{grid-template-columns:1fr}}
 
+/* Footer links are 18px tall with a 10px gap on desktop, which is fine for a
+   cursor and too small for a thumb - 25 of the 26 links sat under the 44px
+   minimum. On touch widths give each one a full-height tap row. The padding
+   replaces the list margin, so the footer grows by the tap area only. */
+@media(max-width:900px){
+  .footer-col ul li{margin-bottom:0}
+  .footer-col ul li a{display:block;padding:13px 0;line-height:1.2}
+  .footer-contact li{margin-bottom:0}
+  .footer-contact li a{display:inline-block;padding:11px 0}
+  .footer-social a{width:44px;height:44px}
+  .footer-bottom a{display:inline-block;padding:10px 0}
+}
+
 /* ---- WhatsApp float ---- */
 .wa-float{
   position:fixed;bottom:24px;right:24px;z-index:99;
