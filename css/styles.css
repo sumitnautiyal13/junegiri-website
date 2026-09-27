@@ -158,8 +158,11 @@ p{margin:0}
 .mega.mega-lg{min-width:720px}
 .mega::before{content:'';position:absolute;top:-26px;left:0;right:0;height:26px;background:transparent}
 /* Widen the catch area to the full panel width while the menu is open, so a
-   diagonal move towards an item at either edge keeps the pointer inside it. */
-.nav-links > li:hover > a.has-mega::before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:100%;width:560px;height:26px}
+   diagonal move towards an item at either edge keeps the pointer inside it.
+   Desktop only - on a 375px phone this would be a 560px invisible sheet. */
+@media(min-width:901px){
+  .nav-links > li:hover > a.has-mega::before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:100%;width:560px;height:26px}
+}
 .nav-links > li:hover > .mega,.nav-links > li:focus-within > .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);transition-delay:0s}
 .mega-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:24px}
 .mega-grid.cols-2{grid-template-columns:1fr 1fr;gap:28px}
@@ -196,6 +199,15 @@ p{margin:0}
 @media(max-width:900px){
   .nav-links,.nav-cta{display:none}
   .nav-toggle{display:flex}
+  /* The desktop rule `.nav-links > li:hover > .mega` sets translateX(-50%) and
+     out-specifies `.nav-links.open .mega{transform:none}`. On a touch screen a
+     tap leaves :hover and :focus-within stuck on the item, so the accordion
+     panel was dragged ~167px off the left edge and its labels were cut off.
+     Re-assert the reset at higher specificity, and drop the desktop
+     close-delay so the accordion collapses immediately on tap. */
+  .nav-links.open > li:hover > .mega,
+  .nav-links.open > li:focus-within > .mega{transform:none}
+  .nav-links.open .mega{transition-delay:0s}
   .nav-links.open{
     display:flex;flex-direction:column;gap:0;align-items:stretch;
     position:absolute;top:100%;left:0;right:0;
