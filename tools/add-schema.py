@@ -93,7 +93,7 @@ ACTIVITIES = [
 ]
 
 
-def offer(price, unit=None, extra=None):
+def offer(price, unit=None, extra=None, tax_included=None):
     data = {"@type": "Offer", "price": str(price), "priceCurrency": "INR"}
     if unit:
         data["priceSpecification"] = {
@@ -102,6 +102,10 @@ def offer(price, unit=None, extra=None):
             "priceCurrency": "INR",
             "unitText": unit,
         }
+        # Room tariffs are quoted before GST, so say so rather than let a
+        # consumer assume the number is what they pay.
+        if tax_included is not None:
+            data["priceSpecification"]["valueAddedTaxIncluded"] = tax_included
     if extra:
         data.update(extra)
     return data
@@ -138,7 +142,7 @@ def schemas():
                             "description": desc,
                             "address": ADDRESS,
                             "telephone": "+91-98738-97652",
-                            "offers": offer(price, "per night"),
+                            "offers": offer(price, "per person per night", tax_included=False),
                         },
                     }
                     for i, (name, path, price, desc) in enumerate(ROOMS, 1)
