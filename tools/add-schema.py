@@ -32,7 +32,7 @@ BUSINESS = {"@id": f"{BASE}/#business", "name": "JuneGiri Farms"}
 RETREAT_FAQ = [
     ("I'm a complete beginner. Is this for me?",
      "Yes. Our sessions are alignment-first and beginner-friendly, especially "
-     "the gentler Hatha and Yin practices. What matters is that you want to "
+     "our gentler yoga sessions. What matters is that you want to "
      "start, not where you are starting from."),
     ("When do you run the next batch?",
      "We run small-group batches almost every month, Feb-Dec. WhatsApp us and "
@@ -161,7 +161,7 @@ def schemas():
             },
             "areaServed": {"@type": "Place", "name": "Rishikesh, Uttarakhand"},
             "description": "Custom corporate retreats and team offsites for "
-                           "12-40 people at JuneGiri Farms, Rishikesh. "
+                           "12-16 people at JuneGiri Farms, Rishikesh. "
                            "Full-buyout option available.",
             "offers": offer(5000, "per person per day"),
         }],
@@ -172,7 +172,7 @@ def schemas():
             "url": f"{BASE}/ttc",
             "description": "200-hour Yoga Alliance certified Teacher Training "
                            "Course at JuneGiri Farms, Rishikesh. Small batches "
-                           "of 14, starting Winter 2026.",
+                           "of 14, starting February 2027.",
             "provider": {
                 "@type": "Organization", **BUSINESS, "url": BASE,
             },
