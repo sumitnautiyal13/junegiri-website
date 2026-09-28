@@ -15,7 +15,6 @@
 /about.html           /about               301
 /adventure.html       /adventure           301
 /blog.html            /blog                301
-/cafe.html            /cafe                301
 /cancellation.html    /cancellation        301
 /contact.html         /contact             301
 /corporate.html       /corporate           301
@@ -42,7 +41,6 @@
 /about/               /about               301
 /adventure/           /adventure           301
 /blog/                /blog                301
-/cafe/                /cafe                301
 /cancellation/        /cancellation        301
 /contact/             /contact             301
 /corporate/           /corporate           301
@@ -66,5 +64,7 @@
 /yatra/               /yatra               301
 
 # --- moved pages --------------------------------------------------------
-/menu                 /cafe                301
-/menu/                /cafe                301
+/cafe                 /stay                301
+/cafe/                /stay                301
+/menu                 /stay                301
+/menu/                /stay                301

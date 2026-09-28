@@ -94,6 +94,11 @@ ACTIVITIES = [
 
 
 # The café menu, priced separately from the meals included in the room rate.
+#
+# ⚠️ The menu is shown on /stay as a photograph of the printed card, so this
+# table is the ONLY machine-readable copy of these prices - and the only one
+# that can silently go stale. When images/food/beverages-snacks-menu.jpg is
+# replaced, re-read it and update this table in the same commit.
 MENU = [
     ("Hot Beverages", [
         ("Masala Tea", 45), ("Milk Tea", 40), ("Ginger / Herbal Tea", 40),
@@ -147,28 +152,6 @@ def schemas():
                 for q, a in RETREAT_FAQ
             ],
         }],
-        "cafe": [{
-            "@context": "https://schema.org",
-            "@type": "Menu",
-            "name": "Caf\u00e9 menu at JuneGiri Farms",
-            "url": f"{BASE}/cafe",
-            "inLanguage": "en",
-            "hasMenuSection": [
-                {
-                    "@type": "MenuSection",
-                    "name": section,
-                    "hasMenuItem": [
-                        {
-                            "@type": "MenuItem",
-                            "name": item,
-                            "offers": offer(price, "per serving", tax_included=False),
-                        }
-                        for item, price in items
-                    ],
-                }
-                for section, items in MENU
-            ],
-        }],
         "stay": [{
             "@context": "https://schema.org",
             "@type": "CollectionPage",
@@ -194,6 +177,27 @@ def schemas():
                     for i, (name, path, price, desc) in enumerate(ROOMS, 1)
                 ],
             },
+        }, {
+            "@context": "https://schema.org",
+            "@type": "Menu",
+            "name": "Beverages & snacks menu at JuneGiri Farms",
+            "url": f"{BASE}/stay#menu",
+            "inLanguage": "en",
+            "hasMenuSection": [
+                {
+                    "@type": "MenuSection",
+                    "name": section,
+                    "hasMenuItem": [
+                        {
+                            "@type": "MenuItem",
+                            "name": item,
+                            "offers": offer(price, "per serving", tax_included=False),
+                        }
+                        for item, price in items
+                    ],
+                }
+                for section, items in MENU
+            ],
         }],
         "corporate": [{
             "@context": "https://schema.org",
