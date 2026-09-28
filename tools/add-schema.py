@@ -93,6 +93,30 @@ ACTIVITIES = [
 ]
 
 
+# The café menu, priced separately from the meals included in the room rate.
+MENU = [
+    ("Hot Beverages", [
+        ("Masala Tea", 45), ("Milk Tea", 40), ("Ginger / Herbal Tea", 40),
+        ("Black Tea", 35), ("Coffee", 60), ("Black Coffee", 50),
+        ("Lemon Honey Tea", 50),
+    ]),
+    ("Cold Beverages", [
+        ("Fresh Lemon Soda", 100), ("Sweet Lassi", 100), ("Plain Lassi", 80),
+        ("Cold Coffee", 150), ("Fresh Lime Juice", 80),
+        ("JuneGiri Detox Drink", 150), ("Mineral Water", 30),
+    ]),
+    ("Farm Snacks", [
+        ("French Fries", 150), ("Masala Fries", 150),
+        ("French Fries with Cheese", 200), ("Nachos with Cheese", 215),
+        ("Vegetable Pakora", 150), ("Onion Pakora", 150),
+        ("Paneer Pakora", 250), ("Aloo Bonda", 200),
+        ("Cheese Sandwich", 250), ("Vegetable Sandwich", 200),
+        ("Maggi", 80), ("Vegetable Maggi", 150), ("Aloo Chaat", 100),
+    ]),
+    ("JuneGiri Special", [("Farm Snack Platter", 350)]),
+]
+
+
 def offer(price, unit=None, extra=None, tax_included=None):
     data = {"@type": "Offer", "price": str(price), "priceCurrency": "INR"}
     if unit:
@@ -121,6 +145,28 @@ def schemas():
                 {"@type": "Question", "name": q,
                  "acceptedAnswer": {"@type": "Answer", "text": a}}
                 for q, a in RETREAT_FAQ
+            ],
+        }],
+        "menu": [{
+            "@context": "https://schema.org",
+            "@type": "Menu",
+            "name": "Caf\u00e9 menu at JuneGiri Farms",
+            "url": f"{BASE}/menu",
+            "inLanguage": "en",
+            "hasMenuSection": [
+                {
+                    "@type": "MenuSection",
+                    "name": section,
+                    "hasMenuItem": [
+                        {
+                            "@type": "MenuItem",
+                            "name": item,
+                            "offers": offer(price, "per serving", tax_included=False),
+                        }
+                        for item, price in items
+                    ],
+                }
+                for section, items in MENU
             ],
         }],
         "stay": [{

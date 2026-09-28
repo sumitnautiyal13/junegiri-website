@@ -35,6 +35,7 @@ RULES = {
     "blog": ("weekly", "0.7"),
     "corporate": ("monthly", "0.7"),
     "gallery": ("monthly", "0.7"),
+    "menu": ("monthly", "0.7"),
     "about": ("monthly", "0.7"),
     "faq": ("monthly", "0.7"),
     "ttc": ("monthly", "0.6"),
