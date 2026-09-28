@@ -6,19 +6,22 @@
 #   /stay.html   -> /stay   (301, overrides the Cloudflare Pages default 307)
 #
 # No rule for the bare "/" — a root trailing-slash rule would loop.
+#
+# LEGACY holds URLs that no longer exist as pages. They cannot be derived from
+# the directory, so they are listed by hand and emitted last.
 
 # --- .html -> canonical -------------------------------------------------
 /index.html           /                301
 /about.html           /about               301
 /adventure.html       /adventure           301
 /blog.html            /blog                301
+/cafe.html            /cafe                301
 /cancellation.html    /cancellation        301
 /contact.html         /contact             301
 /corporate.html       /corporate           301
 /faq.html             /faq                 301
 /gallery.html         /gallery             301
 /membership.html      /membership          301
-/menu.html            /menu                301
 /payment.html         /payment             301
 /plan.html            /plan                301
 /press.html           /press               301
@@ -39,13 +42,13 @@
 /about/               /about               301
 /adventure/           /adventure           301
 /blog/                /blog                301
+/cafe/                /cafe                301
 /cancellation/        /cancellation        301
 /contact/             /contact             301
 /corporate/           /corporate           301
 /faq/                 /faq                 301
 /gallery/             /gallery             301
 /membership/          /membership          301
-/menu/                /menu                301
 /payment/             /payment             301
 /plan/                /plan                301
 /press/               /press               301
@@ -61,3 +64,7 @@
 /treks/               /treks               301
 /ttc/                 /ttc                 301
 /yatra/               /yatra               301
+
+# --- moved pages --------------------------------------------------------
+/menu                 /cafe                301
+/menu/                /cafe                301

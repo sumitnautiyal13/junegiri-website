@@ -147,11 +147,11 @@ def schemas():
                 for q, a in RETREAT_FAQ
             ],
         }],
-        "menu": [{
+        "cafe": [{
             "@context": "https://schema.org",
             "@type": "Menu",
             "name": "Caf\u00e9 menu at JuneGiri Farms",
-            "url": f"{BASE}/menu",
+            "url": f"{BASE}/cafe",
             "inLanguage": "en",
             "hasMenuSection": [
                 {
