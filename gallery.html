@@ -59,10 +59,6 @@
 .gh-inner .kicker{color:var(--sky)}
 .gh-inner h1{color:#fff;margin:12px 0 14px}
 .gh-inner .lede{color:rgba(255,255,255,.82);max-width:60ch;margin:0 auto}
-.gh-stats{display:flex;gap:40px;justify-content:center;margin-top:30px;flex-wrap:wrap}
-.gh-stats div{text-align:center}
-.gh-stats b{display:block;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.7rem;line-height:1;color:#fff}
-.gh-stats span{font-size:.76rem;color:rgba(255,255,255,.65);letter-spacing:.01em}
 .gh .breadcrumb,.gh .breadcrumb a{color:rgba(255,255,255,.7)}
 
 /* ---------- filter bar, stuck under the fixed 76px header ---------- */
@@ -78,22 +74,56 @@
 .gallery-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
 .gallery-tab.active i{opacity:.7}
 
-/* ---------- justified rows ----------
-   Every photo keeps its own shape; a row shares one height and fills the width
-   exactly. CSS cannot solve for that, so js/gallery lays it out and sets px. */
-.gallery-grid{display:flex;flex-wrap:wrap;gap:12px;align-content:flex-start;min-height:200px}
-.gallery-grid .g{position:relative;flex:none;overflow:hidden;border-radius:12px;cursor:zoom-in;background:var(--cream);
-  opacity:0;transform:translateY(24px) scale(.985);
+/* ---------- a rail per set ----------
+   The rails run to the edge of the screen on purpose: a row that is visibly cut
+   off reads as "keep scrolling", where one that stops inside the container
+   reads as finished. The gutter below keeps the first and last photo lined up
+   with the headings above them. */
+.gsec{margin:0 0 52px}
+.gsec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:16px}
+.gsec-head h2{font-size:1.32rem;margin:0;display:flex;align-items:baseline;gap:10px}
+.gsec-head h2 span{font-size:.8rem;font-weight:600;color:var(--text-light);font-variant-numeric:tabular-nums}
+.gsec-head p{margin:3px 0 0;font-size:.88rem;color:var(--text-light)}
+.gsec-nav{display:flex;gap:8px;flex:none}
+.gsec-nav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--white);
+  color:var(--ink);font-size:1.15rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .18s,border-color .18s,opacity .18s}
+.gsec-nav button:hover{background:var(--green);border-color:var(--green);color:#fff}
+.gsec-nav button[disabled]{opacity:.3;cursor:default}
+.gsec-nav button[disabled]:hover{background:var(--white);border-color:var(--border);color:var(--ink)}
+
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;scroll-behavior:smooth;
+  padding:4px calc((100vw - 1200px)/2 + 24px) 6px;
+  /* scroll-padding must mirror the padding, or snap-align:start pulls the rail
+     to the padding edge and the first photo sits under the gutter. */
+  scroll-padding-left:calc((100vw - 1200px)/2 + 24px);
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail::-webkit-scrollbar{display:none}
+@media(max-width:1248px){.rail{padding-left:24px;padding-right:24px;scroll-padding-left:24px}}
+
+.rail .g{position:relative;flex:none;height:300px;overflow:hidden;border-radius:12px;cursor:zoom-in;
+  background:var(--cream);scroll-snap-align:start;
+  opacity:0;transform:translateY(20px) scale(.985);
   transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
-.gallery-grid .g.in{opacity:1;transform:none}
-.gallery-grid .g img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.22,1,.36,1)}
-.gallery-grid .g:hover img{transform:scale(1.065)}
-.gallery-grid .g::after{content:attr(data-label);position:absolute;left:0;right:0;bottom:0;padding:30px 14px 11px;
+.rail .g.in{opacity:1;transform:none}
+.rail .g img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.rail .g:hover img{transform:scale(1.06)}
+.rail .g::after{content:attr(data-label);position:absolute;left:0;right:0;bottom:0;padding:30px 14px 11px;
   font-size:.74rem;font-weight:600;color:#fff;pointer-events:none;
   background:linear-gradient(180deg,transparent,rgba(15,23,42,.8));
   opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s}
-.gallery-grid .g:hover::after{opacity:1;transform:none}
-.g-empty{padding:60px 0;text-align:center;color:var(--text-light)}
+.rail .g:hover::after{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .rail .g{height:230px}
+  .gsec-nav{display:none}
+  .gsec{margin-bottom:40px}
+}
+@media(max-width:640px){
+  .rail{gap:10px;padding-left:24px;padding-right:24px;scroll-padding-left:24px}
+  .rail .g{height:190px}
+  .gsec-head h2{font-size:1.14rem}
+}
 
 /* ---------- lightbox ---------- */
 .lb{position:fixed;inset:0;z-index:999;background:rgba(9,13,22,.97);display:none;align-items:center;justify-content:center;
@@ -131,8 +161,7 @@ body.lb-on{overflow:hidden}
 @media(max-width:900px){
   .gh-row img{height:142px}
   .gh-inner{padding:74px 0 64px}
-  .gh-stats{gap:28px}
-}
+  }
 @media(max-width:640px){
   /* Smaller strips read as mud under a full-strength scrim, so lighten it and
      give the photographs a little more height to be recognisable as photographs. */
@@ -140,9 +169,7 @@ body.lb-on{overflow:hidden}
   .gh-strips{gap:10px}
   .gh::after{background:linear-gradient(180deg,rgba(15,23,42,.84) 0%,rgba(15,23,42,.62) 46%,rgba(15,23,42,.9) 100%)}
   .gh-inner{padding:60px 0 54px}
-  .gh-stats{gap:24px;margin-top:24px}
-  .gh-stats b{font-size:1.45rem}
-  .gallery-clips{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto}
+      .gallery-clips{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto}
   .lb-nav{width:44px;height:44px;font-size:1.3rem}
   .lb-nav.p{left:8px}
   .lb-nav.n{right:8px}
@@ -274,47 +301,42 @@ body.lb-on{overflow:hidden}
       <span class="kicker">JuneGiri Farms &middot; Visual tour</span>
       <h1>See it before you stay.</h1>
       <p class="lede">The rooms, the forest, the yoga shala, the kitchen and our family at work, shot over the last three years. Nothing staged, nothing borrowed.</p>
-      <div class="gh-stats">
-        <div><b>71</b><span>photographs</span></div>
-        <div><b>3</b><span>short films</span></div>
-        <div><b>8</b><span>sets to browse</span></div>
-      </div>
       <div class="breadcrumb"><a href="/">Home</a> / Gallery</div>
     </div>
   </div>
 </section>
 
 <section class="section">
-  <div class="container">
-
-    <div class="gf">
-      <div class="container">
-        <div class="gallery-tabs">
-          <button class="gallery-tab active" onclick="filterGallery(event,'all')">All<i>71</i></button>
-          <button class="gallery-tab" onclick="filterGallery(event,'property')">The Homestay<i>19</i></button>
-          <button class="gallery-tab" onclick="filterGallery(event,'rooms')">Rooms<i>10</i></button>
-          <button class="gallery-tab" onclick="filterGallery(event,'surroundings')">Surroundings<i>13</i></button>
-          <button class="gallery-tab" onclick="filterGallery(event,'food')">Food<i>10</i></button>
-          <button class="gallery-tab" onclick="filterGallery(event,'yoga')">Yoga<i>7</i></button>
-          <button class="gallery-tab" onclick="filterGallery(event,'family')">Family<i>4</i></button>
-          <button class="gallery-tab" onclick="filterGallery(event,'farm')">Farm<i>6</i></button>
-          <button class="gallery-tab" onclick="filterGallery(event,'amenity')">Amenities<i>2</i></button>
-        </div>
+  <div class="gf">
+    <div class="container">
+      <div class="gallery-tabs">
+        <a class="gallery-tab" href="#set-rooms" data-cat="rooms" onclick="jumpTo(event,'rooms')">Rooms<i>10</i></a>
+        <a class="gallery-tab" href="#set-property" data-cat="property" onclick="jumpTo(event,'property')">The Homestay<i>19</i></a>
+        <a class="gallery-tab" href="#set-food" data-cat="food" onclick="jumpTo(event,'food')">Food<i>10</i></a>
+        <a class="gallery-tab" href="#set-surroundings" data-cat="surroundings" onclick="jumpTo(event,'surroundings')">Surroundings<i>13</i></a>
+        <a class="gallery-tab" href="#set-yoga" data-cat="yoga" onclick="jumpTo(event,'yoga')">Yoga<i>7</i></a>
+        <a class="gallery-tab" href="#set-farm" data-cat="farm" onclick="jumpTo(event,'farm')">Farm<i>6</i></a>
+        <a class="gallery-tab" href="#set-family" data-cat="family" onclick="jumpTo(event,'family')">Family<i>4</i></a>
+        <a class="gallery-tab" href="#set-amenity" data-cat="amenity" onclick="jumpTo(event,'amenity')">Gym<i>2</i></a>
       </div>
     </div>
+  </div>
 
-    <div class="gallery-grid" id="gallery" style="transition:opacity .15s"></div>
+  <div id="sets"></div>
 
+
+  <div class="container">
     <div class="g-films">
-      <h2>Three short films</h2>
-      <p>Shot on a phone, by us, on ordinary days.</p>
+    <h2>Three short films</h2>
+    <p>Shot on a phone, by us, on ordinary days.</p>
     </div>
     <div class="gallery-clips">
-      <figure><video controls preload="none" playsinline muted poster="/images/video/trek-poster.webp"><source src="/images/video/trek.mp4" type="video/mp4"></video><figcaption>Morning trek through the fields</figcaption></figure>
-      <figure><video controls preload="none" playsinline muted poster="/images/video/food-poster.webp"><source src="/images/video/food.mp4" type="video/mp4"></video><figcaption>A Garhwali spread, fresh from the kitchen</figcaption></figure>
-      <figure><video controls preload="none" playsinline muted poster="/images/video/family-poster.webp"><source src="/images/video/family.mp4" type="video/mp4"></video><figcaption>Little wanderers on the farm</figcaption></figure>
+    <figure><video controls preload="none" playsinline muted poster="/images/video/trek-poster.webp"><source src="/images/video/trek.mp4" type="video/mp4"></video><figcaption>Morning trek through the fields</figcaption></figure>
+    <figure><video controls preload="none" playsinline muted poster="/images/video/food-poster.webp"><source src="/images/video/food.mp4" type="video/mp4"></video><figcaption>A Garhwali spread, fresh from the kitchen</figcaption></figure>
+    <figure><video controls preload="none" playsinline muted poster="/images/video/family-poster.webp"><source src="/images/video/family.mp4" type="video/mp4"></video><figcaption>Little wanderers on the farm</figcaption></figure>
     </div>
 
+    </section>
   </div>
 </section>
 
@@ -474,14 +496,19 @@ var items=[
   {g:'g70',cat:'rooms',w:1600,h:1066,r:1.5009},
   {g:'g71',cat:'property',w:1600,h:1066,r:1.5009}
 ];
-/* Gallery: justified rows, scroll reveal, lightbox.
-   items[] is generated into the page; r is width/height, measured at build time
-   so a row can be laid out before a single photo has downloaded. */
-var LABEL = {
-  property: 'The homestay', rooms: 'Rooms', surroundings: 'Surroundings',
-  food: 'Food & kitchen', yoga: 'Yoga', family: 'Family', farm: 'The farm',
-  amenity: 'Gym'
-};
+/* Gallery: one horizontal rail per set, plus a lightbox.
+   items[] carries w/h/r measured at build time, so a photo is sized correctly
+   before it has downloaded and the rails never reflow as images arrive. */
+var SETS = [
+  ['rooms',        'Rooms',          'Where you sleep.'],
+  ['property',     'The Homestay',   'The house, the verandahs, the places people end up sitting.'],
+  ['food',         'Food & kitchen', 'Three Garhwali meals a day, and the room they are eaten in.'],
+  ['surroundings', 'Surroundings',   'Rajaji forest, the terraced fields, the hills in monsoon.'],
+  ['yoga',         'Yoga',           'Morning and evening, open to everyone staying.'],
+  ['farm',         'The farm',       'What grows here, and the hands that grow it.'],
+  ['family',       'Family',         'Guests, and the people who look after them.'],
+  ['amenity',      'Gym',            'A small one, under a tin roof, with a view.']
+];
 var ALT = {
   property: 'The homestay buildings and common areas at JuneGiri Farms, Rishikesh',
   rooms: 'A guest room at JuneGiri Farms, Rishikesh',
@@ -492,104 +519,122 @@ var ALT = {
   farm: 'The organic farm at JuneGiri Farms, Rishikesh',
   amenity: 'The gym at JuneGiri Farms, Rishikesh'
 };
+var H = { big: 300, mid: 230, small: 190 };
 
-var grid = document.getElementById('gallery');
-var shown = [];           // the items currently rendered, in order
-var filter = 'all';
-
-function tiles() { return [].slice.call(grid.querySelectorAll('.g')); }
+var host = document.getElementById('sets');
+var bySet = {};                       // cat -> items, for the lightbox
 
 /* --- build --- */
-function paint() {
-  shown = items.filter(function (i) { return filter === 'all' || i.cat === filter; });
-  grid.innerHTML = shown.map(function (i, n) {
-    var base = '/images/gallery/' + i.g;
-    return '<div class="g" data-r="' + i.r + '" data-n="' + n + '" data-label="' + LABEL[i.cat] + '">'
-      + '<picture><source srcset="' + base + '.webp" type="image/webp">'
-      + '<img src="' + base + '.jpg" alt="' + ALT[i.cat] + '" width="' + i.w + '" height="' + i.h + '" loading="lazy" decoding="async">'
-      + '</picture></div>';
-  }).join('') || '<p class="g-empty">No photos in this set yet.</p>';
-  layout();
+function rowHeight() {
+  return innerWidth <= 640 ? H.small : (innerWidth <= 900 ? H.mid : H.big);
+}
+function build() {
+  var h = rowHeight(), html = '';
+  SETS.forEach(function (s) {
+    var cat = s[0];
+    var list = items.filter(function (i) { return i.cat === cat; });
+    if (!list.length) return;
+    bySet[cat] = list;
+    html += '<section class="gsec" id="set-' + cat + '" data-cat="' + cat + '">'
+      + '<div class="container"><div class="gsec-head"><div>'
+      + '<h2>' + s[1] + ' <span>' + list.length + '</span></h2><p>' + s[2] + '</p>'
+      + '</div><div class="gsec-nav">'
+      + '<button type="button" data-d="-1" aria-label="Scroll ' + s[1] + ' left">&#8249;</button>'
+      + '<button type="button" data-d="1" aria-label="Scroll ' + s[1] + ' right">&#8250;</button>'
+      + '</div></div></div>'
+      + '<div class="rail" data-cat="' + cat + '">'
+      + list.map(function (i, n) {
+          var base = '/images/gallery/' + i.g;
+          return '<div class="g" data-cat="' + cat + '" data-n="' + n + '" data-r="' + i.r + '" data-label="' + s[1] + '"'
+            + ' style="width:' + Math.round(h * i.r) + 'px">'
+            + '<picture><source srcset="' + base + '.webp" type="image/webp">'
+            + '<img src="' + base + '.jpg" alt="' + ALT[cat] + '" width="' + i.w + '" height="' + i.h + '" loading="lazy" decoding="async">'
+            + '</picture></div>';
+        }).join('')
+      + '</div></section>';
+  });
+  host.innerHTML = html;
+  wire();
   reveal();
 }
 
-/* --- justified rows ---
-   Fill a row until its natural height drops past the target, then stretch that
-   row to the exact container width. The last row is left at target height
-   rather than blown up to fill, which is what makes a short final row look
-   deliberate instead of broken. */
-function layout() {
-  var W = grid.clientWidth;
-  // A hidden tab, a collapsed pane or a display:none ancestor all report 0.
-  // Bailing out would leave every tile unsized forever, so come back for it.
-  if (!W) { requestAnimationFrame(layout); return; }
-  var gap = W < 640 ? 8 : 12;
-  grid.style.gap = gap + 'px';
-  var target = W < 640 ? 148 : (W < 900 ? 200 : 268);
-  var row = [], sum = 0;
-
-  function flush(isLast) {
-    if (!row.length) return;
-    var avail = W - gap * (row.length - 1);
-    var h = avail / sum;
-    var stretch = !(isLast && h > target * 1.4);
-    if (!stretch) h = target;
-    var hh = Math.round(h), used = 0;
-    row.forEach(function (el, i) {
-      var w = (stretch && i === row.length - 1)
-        ? avail - used
-        : Math.round(hh * parseFloat(el.dataset.r));
-      used += w;
-      el.style.width = w + 'px';
-      el.style.height = hh + 'px';
-    });
-    row = []; sum = 0;
-  }
-
-  tiles().forEach(function (el) {
-    row.push(el);
-    sum += parseFloat(el.dataset.r);
-    if ((W - gap * (row.length - 1)) / sum < target) flush(false);
+/* Heights are a media-query step, so only resize across a breakpoint matters. */
+function resize() {
+  var h = rowHeight();
+  [].forEach.call(host.querySelectorAll('.g'), function (el) {
+    el.style.width = Math.round(h * parseFloat(el.dataset.r)) + 'px';
   });
-  flush(true);
 }
 
-/* --- reveal, staggered by position in the row --- */
+/* --- arrows --- */
+function wire() {
+  [].forEach.call(host.querySelectorAll('.gsec'), function (sec) {
+    var rail = sec.querySelector('.rail');
+    var btns = sec.querySelectorAll('.gsec-nav button');
+    function state() {
+      // A rail that fits has nothing to scroll, so it gets no arrows at all
+      // rather than two permanently greyed-out ones.
+      var overflows = rail.scrollWidth > rail.clientWidth + 4;
+      sec.querySelector('.gsec-nav').style.display = overflows ? '' : 'none';
+      btns[0].disabled = rail.scrollLeft < 8;
+      btns[1].disabled = rail.scrollLeft > rail.scrollWidth - rail.clientWidth - 8;
+    }
+    [].forEach.call(btns, function (b) {
+      b.addEventListener('click', function () {
+        rail.scrollBy({ left: +b.dataset.d * rail.clientWidth * 0.82, behavior: 'smooth' });
+      });
+    });
+    rail.addEventListener('scroll', state, { passive: true });
+    state();
+  });
+}
+
+/* --- reveal --- */
 var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
   es.forEach(function (e) {
     if (!e.isIntersecting) return;
-    var el = e.target;
-    el.style.transitionDelay = (Math.min(+el.dataset.n, 12) % 5) * 55 + 'ms';
-    el.classList.add('in');
-    io.unobserve(el);
+    e.target.style.transitionDelay = (Math.min(+e.target.dataset.n, 8) % 5) * 60 + 'ms';
+    e.target.classList.add('in');
+    io.unobserve(e.target);
   });
-}, { rootMargin: '80px 0px' }) : null;
-
+}, { rootMargin: '120px' }) : null;
 function reveal() {
-  if (!io) { tiles().forEach(function (el) { el.classList.add('in'); }); return; }
-  tiles().forEach(function (el) { io.observe(el); });
+  var all = host.querySelectorAll('.g');
+  if (!io) { [].forEach.call(all, function (el) { el.classList.add('in'); }); return; }
+  [].forEach.call(all, function (el) { io.observe(el); });
 }
 
-/* --- filters --- */
-function filterGallery(ev, f) {
-  document.querySelectorAll('.gallery-tab').forEach(function (b) { b.classList.remove('active'); });
-  (ev.currentTarget || ev.target).classList.add('active');
-  filter = f;
-  grid.style.opacity = '0';
-  setTimeout(function () { paint(); grid.style.opacity = '1'; }, 150);
+/* --- set nav: jump to a rail, and highlight the one you are looking at --- */
+function jumpTo(ev, cat) {
+  ev.preventDefault();
+  var el = document.getElementById('set-' + cat);
+  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - 140, behavior: 'smooth' });
+}
+function spy() {
+  var best = null, bestD = 1e9;
+  [].forEach.call(host.querySelectorAll('.gsec'), function (sec) {
+    var d = Math.abs(sec.getBoundingClientRect().top - 160);
+    if (d < bestD) { bestD = d; best = sec.dataset.cat; }
+  });
+  document.querySelectorAll('.gallery-tab').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.cat === best);
+  });
 }
 
-/* --- lightbox --- */
+/* --- lightbox, scoped to the set you opened it from --- */
 var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'),
-    lbNum = document.getElementById('lbNum'), lbCap = document.getElementById('lbCap'), at = 0;
+    lbNum = document.getElementById('lbNum'), lbCap = document.getElementById('lbCap'),
+    set = [], setName = '', at = 0;
 
-function lbOpen(n) {
-  at = n;
-  var i = shown[at];
+function lbOpen(cat, n) {
+  set = bySet[cat] || []; at = n;
+  setName = (SETS.filter(function (s) { return s[0] === cat; })[0] || ['', cat])[1];
+  var i = set[at];
   lbImg.src = '/images/gallery/' + i.g + '.jpg';
-  lbImg.alt = ALT[i.cat];
-  lbNum.textContent = (at + 1) + ' / ' + shown.length;
-  lbCap.textContent = LABEL[i.cat];
+  lbImg.alt = ALT[cat];
+  lbNum.textContent = setName + ' &middot; ' + (at + 1) + ' / ' + set.length;
+  lbNum.innerHTML = setName + ' &middot; ' + (at + 1) + ' / ' + set.length;
+  lbCap.textContent = 'Arrow keys or swipe \u00b7 Esc to close';
   lb.classList.add('open');
   document.body.classList.add('lb-on');
   requestAnimationFrame(function () { lb.classList.add('show'); });
@@ -599,11 +644,17 @@ function lbClose() {
   document.body.classList.remove('lb-on');
   setTimeout(function () { lb.classList.remove('open'); lbImg.removeAttribute('src'); }, 220);
 }
-function step(d) { lbOpen((at + d + shown.length) % shown.length); }
+function step(d) {
+  if (!set.length) return;
+  at = (at + d + set.length) % set.length;
+  var i = set[at];
+  lbImg.src = '/images/gallery/' + i.g + '.jpg';
+  lbNum.innerHTML = setName + ' &middot; ' + (at + 1) + ' / ' + set.length;
+}
 
-grid.addEventListener('click', function (e) {
+host.addEventListener('click', function (e) {
   var t = e.target.closest('.g');
-  if (t) lbOpen(+t.dataset.n);
+  if (t) lbOpen(t.dataset.cat, +t.dataset.n);
 });
 document.addEventListener('keydown', function (e) {
   if (!lb.classList.contains('open')) return;
@@ -612,7 +663,6 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'ArrowLeft') step(-1);
 });
 lb.addEventListener('click', function (e) { if (e.target === lb || e.target === lbImg.parentNode) lbClose(); });
-
 var sx = 0;
 lb.addEventListener('touchstart', function (e) { sx = e.changedTouches[0].clientX; }, { passive: true });
 lb.addEventListener('touchend', function (e) {
@@ -621,13 +671,15 @@ lb.addEventListener('touchend', function (e) {
 }, { passive: true });
 
 /* --- go --- */
-var rt;
-function relayout() { clearTimeout(rt); rt = setTimeout(layout, 120); }
-// ResizeObserver catches the container changing for any reason, not just the
-// window: a collapsed pane reopening, the scrollbar appearing, a zoom change.
-if ('ResizeObserver' in window) new ResizeObserver(relayout).observe(grid);
-else window.addEventListener('resize', relayout);
-paint();
+var rt, last = innerWidth;
+window.addEventListener('resize', function () {
+  clearTimeout(rt);
+  rt = setTimeout(function () { if (innerWidth !== last) { last = innerWidth; resize(); } }, 120);
+});
+var st;
+window.addEventListener('scroll', function () { clearTimeout(st); st = setTimeout(spy, 90); }, { passive: true });
+build();
+spy();
 </script>
 <script src="js/main.js?v=28acc0bfaf"></script>
 </body>
