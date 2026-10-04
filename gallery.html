@@ -173,6 +173,8 @@ body.lb-on{overflow:hidden}
   .lb-nav{width:44px;height:44px;font-size:1.3rem}
   .lb-nav.p{left:8px}
   .lb-nav.n{right:8px}
+  .lb-x{width:44px;height:44px}   /* 40 is under the minimum tap target */
+  .lb-top{padding:12px 14px}
   .lb-fig,.lb-fig img{max-width:96vw;max-height:76vh}
 }
 @media(prefers-reduced-motion:reduce){
@@ -610,15 +612,29 @@ function jumpTo(ev, cat) {
   var el = document.getElementById('set-' + cat);
   if (el) window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - 140, behavior: 'smooth' });
 }
+var spied = null;
 function spy() {
   var best = null, bestD = 1e9;
   [].forEach.call(host.querySelectorAll('.gsec'), function (sec) {
     var d = Math.abs(sec.getBoundingClientRect().top - 160);
     if (d < bestD) { bestD = d; best = sec.dataset.cat; }
   });
+  if (best === spied) return;          // don't fight someone scrolling the bar
+  spied = best;
+  var on = null;
   document.querySelectorAll('.gallery-tab').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.cat === best);
+    var hit = b.dataset.cat === best;
+    b.classList.toggle('active', hit);
+    if (hit) on = b;
   });
+  // The bar is narrower than its links on a phone — about two and a half fit —
+  // so six of the eight sets would highlight off-screen and the bar would look
+  // stuck on Rooms. scrollIntoView would drag the page with it, so move the
+  // bar by hand.
+  if (on) {
+    var bar = on.parentNode;
+    bar.scrollTo({ left: Math.max(0, on.offsetLeft - (bar.clientWidth - on.offsetWidth) / 2), behavior: 'smooth' });
+  }
 }
 
 /* --- lightbox, scoped to the set you opened it from --- */
@@ -651,6 +667,20 @@ function step(d) {
   lbImg.src = '/images/gallery/' + i.g + '.jpg';
   lbNum.innerHTML = setName + ' &middot; ' + (at + 1) + ' / ' + set.length;
 }
+
+// <picture> has no fallback once a <source> has been chosen: if the WebP fetch
+// fails — a dropped connection, an aborted lazy load — the tile stays a broken
+// image box for good. Drop the source and retry on the JPEG, once per photo.
+host.addEventListener('error', function (e) {
+  var img = e.target;
+  if (!img || img.tagName !== 'IMG' || img.dataset.retried) return;
+  img.dataset.retried = '1';
+  var src = img.parentNode && img.parentNode.querySelector('source');
+  if (src) src.parentNode.removeChild(src);
+  var jpg = img.getAttribute('src');
+  img.removeAttribute('src');
+  img.setAttribute('src', jpg);
+}, true);
 
 host.addEventListener('click', function (e) {
   var t = e.target.closest('.g');
