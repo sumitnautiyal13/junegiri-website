@@ -28,6 +28,40 @@ ADDRESS = {
 }
 BUSINESS = {"@id": f"{BASE}/#business", "name": "JuneGiri Farms"}
 
+# Authoritative pin, copied from the Google Business Profile
+# ("Junegiri Farms and Homestay"). Keep in sync with the hand-written
+# BedAndBreakfast block in index.html.
+GEO = {"@type": "GeoCoordinates", "latitude": 30.0870513,
+       "longitude": 78.3637131}
+HASMAP = ("https://www.google.com/maps/place/Junegiri+Farms+and+Homestay/"
+          "@30.0870513,78.3637131,17z")
+OPEN_24_7 = {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                  "Saturday", "Sunday"],
+    "opens": "00:00", "closes": "23:59",
+}
+
+# Home > <label> breadcrumb for the build-managed commercial pages.
+BREADCRUMB_LABELS = {
+    "stay": "Stay", "plan": "Plan Your Stay", "retreat": "Yoga Retreats",
+    "corporate": "Corporate Retreats", "ttc": "Yoga Teacher Training",
+    "adventure": "Rishikesh Adventures",
+}
+
+
+def breadcrumb(stem, label):
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home",
+             "item": f"{BASE}/"},
+            {"@type": "ListItem", "position": 2, "name": label,
+             "item": f"{BASE}/{stem}"},
+        ],
+    }
+
 # Verbatim from the "Common questions" section of /retreat.
 RETREAT_FAQ = [
     ("I'm a complete beginner. Is this for me?",
@@ -263,7 +297,14 @@ def schemas():
             "telephone": "+91-98738-97652",
             "email": "junegirifarms@gmail.com",
             "priceRange": "₹₹",
+            "currenciesAccepted": "INR",
             "address": ADDRESS,
+            "geo": GEO,
+            "hasMap": HASMAP,
+            "openingHoursSpecification": OPEN_24_7,
+            "checkinTime": "13:00",
+            "checkoutTime": "11:00",
+            "petsAllowed": True,
             "makesOffer": offer(2500, "per person per day", {
                 "description": "All-inclusive stay: room, three vegetarian "
                                "meals and tea.",
@@ -271,7 +312,7 @@ def schemas():
             "aggregateRating": {
                 "@type": "AggregateRating",
                 "ratingValue": "5.0",
-                "reviewCount": "65",
+                "reviewCount": "68",
             },
         }],
     }
@@ -308,7 +349,13 @@ def apply(stem: str, blocks: list) -> bool:
 
 
 def main():
-    changed = [stem for stem, blocks in schemas().items() if apply(stem, blocks)]
+    changed = []
+    for stem, blocks in schemas().items():
+        blocks = list(blocks)
+        if stem in BREADCRUMB_LABELS:
+            blocks.append(breadcrumb(stem, BREADCRUMB_LABELS[stem]))
+        if apply(stem, blocks):
+            changed.append(stem)
     print(f"schema: {len(schemas())} pages, {len(changed)} updated")
     return 0
 
