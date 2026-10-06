@@ -29,7 +29,6 @@
 /press.html                           /press                               301
 /privacy.html                         /privacy                             301
 /rajaji-national-park-safari.html     /rajaji-national-park-safari         301
-/retreat.html                         /retreat                             301
 /room-farm.html                       /room-farm                           301
 /room-jungle.html                     /room-jungle                         301
 /room-river.html                      /room-river                          301
@@ -38,7 +37,6 @@
 /sustainability.html                  /sustainability                      301
 /terms.html                           /terms                               301
 /treks.html                           /treks                               301
-/ttc.html                             /ttc                                 301
 /what-is-a-farm-stay.html             /what-is-a-farm-stay                 301
 /yatra.html                           /yatra                               301
 
@@ -60,7 +58,6 @@
 /press/                               /press                               301
 /privacy/                             /privacy                             301
 /rajaji-national-park-safari/         /rajaji-national-park-safari         301
-/retreat/                             /retreat                             301
 /room-farm/                           /room-farm                           301
 /room-jungle/                         /room-jungle                         301
 /room-river/                          /room-river                          301
@@ -69,7 +66,6 @@
 /sustainability/                      /sustainability                      301
 /terms/                               /terms                               301
 /treks/                               /treks                               301
-/ttc/                                 /ttc                                 301
 /what-is-a-farm-stay/                 /what-is-a-farm-stay                 301
 /yatra/                               /yatra                               301
 
@@ -78,3 +74,11 @@
 /cafe/                                /stay                                301
 /menu                                 /stay                                301
 /menu/                                /stay                                301
+/retreat                              https://junegiriyogretreats.com/     301
+/retreat/                             https://junegiriyogretreats.com/     301
+/retreat.html                         https://junegiriyogretreats.com/     301
+/retreat.html/                        https://junegiriyogretreats.com/     301
+/ttc                                  https://junegiriyogretreats.com/     301
+/ttc/                                 https://junegiriyogretreats.com/     301
+/ttc.html                             https://junegiriyogretreats.com/     301
+/ttc.html/                            https://junegiriyogretreats.com/     301

@@ -44,8 +44,8 @@ OPEN_24_7 = {
 
 # Home > <label> breadcrumb for the build-managed commercial pages.
 BREADCRUMB_LABELS = {
-    "stay": "Stay", "plan": "Plan Your Stay", "retreat": "Yoga Retreats",
-    "corporate": "Corporate Retreats", "ttc": "Yoga Teacher Training",
+    "stay": "Stay", "plan": "Plan Your Stay",
+    "corporate": "Corporate Retreats",
     "adventure": "Rishikesh Adventures",
 }
 
@@ -177,15 +177,6 @@ def offer(price, unit=None, extra=None, tax_included=None):
 def schemas():
     """page stem -> list of JSON-LD objects."""
     return {
-        "retreat": [{
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                {"@type": "Question", "name": q,
-                 "acceptedAnswer": {"@type": "Answer", "text": a}}
-                for q, a in RETREAT_FAQ
-            ],
-        }],
         "stay": [{
             "@context": "https://schema.org",
             "@type": "CollectionPage",
@@ -248,20 +239,6 @@ def schemas():
                            "12-16 people at JuneGiri Farms, Rishikesh. "
                            "Full-buyout option available.",
             "offers": offer(5000, "per person per day"),
-        }],
-        "ttc": [{
-            "@context": "https://schema.org",
-            "@type": "Course",
-            "name": "200-Hour Yoga Teacher Training at JuneGiri Farms",
-            "url": f"{BASE}/ttc",
-            "description": "200-hour Yoga Alliance certified Teacher Training "
-                           "Course at JuneGiri Farms, Rishikesh. Small batches "
-                           "of 14, starting February 2027.",
-            "provider": {
-                "@type": "Organization", **BUSINESS, "url": BASE,
-            },
-            "educationalCredentialAwarded": "200-hour Yoga Alliance certification",
-            "inLanguage": "en",
         }],
         "adventure": [{
             "@context": "https://schema.org",
