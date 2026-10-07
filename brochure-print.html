@@ -25,22 +25,22 @@
 <title>JuneGiri Farms, Brochure</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 @page{size:A4;margin:0}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-body{font-family:'Inter',sans-serif;color:#1E293B}
-h1,h2,h3,h4{font-family:'Poppins',sans-serif}
-:root{--navy:#0F4C75;--navy2:#093250;--cyan:#00A8E8;--sky:#7FD4FF;--gold:#F0A500;--ink:#0F172A;--light:#64748B;--cream:#F4F8FB;--line:#E6EDF3}
+body{font-family:var(--font-body);color:#1E293B}
+h1,h2,h3,h4{font-family:var(--font-display)}
+:root{--navy:var(--indigo);--navy2:var(--indigo-deep);--cyan:var(--terracotta);--sky:var(--marigold);--gold:var(--marigold);--ink:#0F172A;--light:#64748B;--cream:var(--parchment);--line:#E6EDF3}
 .page{width:210mm;height:297mm;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column}
 .page:last-child{page-break-after:auto}
 
 /* ---------- COVER ---------- */
-.cover{background:linear-gradient(rgba(9,50,80,0.42),rgba(9,50,80,0.80)),url('https://junegirifarms.com/images/surroundings/home-hero.jpg') center/cover;color:#fff;padding:22mm 18mm;justify-content:space-between}
-.cover .logo{font-family:'Poppins';font-weight:800;font-size:26pt;letter-spacing:-0.5px}
+.cover{background:linear-gradient(rgba(26,39,71,0.42),rgba(26,39,71,0.80)),url('https://junegirifarms.com/images/surroundings/home-hero.jpg') center/cover;color:#fff;padding:22mm 18mm;justify-content:space-between}
+.cover .logo{font-family:var(--font-display);font-weight:800;font-size:26pt;letter-spacing:-0.5px}
 .cover .logo span{color:var(--sky)}
-.cover .kick{display:inline-block;background:rgba(0,168,232,0.28);border:1px solid rgba(127,212,255,0.6);color:#fff;padding:5pt 13pt;border-radius:30pt;font-size:8.5pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14pt}
+.cover .kick{display:inline-block;background:rgba(177,74,43,0.28);border:1px solid rgba(127,212,255,0.6);color:#fff;padding:5pt 13pt;border-radius:30pt;font-size:8.5pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14pt}
 .cover h1{font-size:40pt;line-height:1.03;font-weight:800;margin-bottom:12pt}
 .cover .sub{font-size:12.5pt;color:rgba(255,255,255,0.92);max-width:135mm;line-height:1.5}
 .cover-foot{display:flex;justify-content:space-between;align-items:flex-end;font-size:10pt;color:rgba(255,255,255,0.92);border-top:1px solid rgba(255,255,255,0.25);padding-top:12pt}
@@ -48,7 +48,7 @@ h1,h2,h3,h4{font-family:'Poppins',sans-serif}
 
 /* ---------- SHARED PAGE HEADER ---------- */
 .phead{background:var(--navy);color:#fff;padding:13mm 18mm 11mm}
-.phead .pk{font-family:'Poppins';font-size:8.5pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--sky);margin-bottom:6pt}
+.phead .pk{font-family:var(--font-display);font-size:8.5pt;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--sky);margin-bottom:6pt}
 .phead h2{font-size:23pt;font-weight:800;line-height:1.05}
 .phead p{font-size:10.5pt;color:rgba(255,255,255,0.82);margin-top:7pt;max-width:150mm;line-height:1.5}
 .pbody{flex:1;padding:11mm 18mm 0;display:flex;flex-direction:column}
@@ -57,9 +57,9 @@ h1,h2,h3,h4{font-family:'Poppins',sans-serif}
 .price-row{display:flex;gap:8mm}
 .pc{flex:1;border:1.5pt solid var(--line);border-radius:12pt;padding:15pt 16pt;display:flex;flex-direction:column}
 .pc.feat{border:2pt solid var(--gold);background:#FFFaF0;box-shadow:0 6pt 18pt rgba(240,165,0,0.12)}
-.pc .badge{align-self:flex-start;background:var(--gold);color:#fff;font-family:'Poppins';font-size:7pt;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:3pt 9pt;border-radius:20pt;margin-bottom:9pt}
-.pc .t{font-family:'Poppins';font-size:8pt;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);margin-bottom:5pt}
-.pc .amt{font-family:'Poppins';font-size:26pt;font-weight:800;color:var(--navy);line-height:1;margin-bottom:11pt}
+.pc .badge{align-self:flex-start;background:var(--gold);color:#fff;font-family:var(--font-display);font-size:7pt;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:3pt 9pt;border-radius:20pt;margin-bottom:9pt}
+.pc .t{font-family:var(--font-display);font-size:8pt;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);margin-bottom:5pt}
+.pc .amt{font-family:var(--font-display);font-size:26pt;font-weight:800;color:var(--navy);line-height:1;margin-bottom:11pt}
 .pc .amt small{font-size:10pt;color:var(--light);font-weight:500}
 .pc ul{list-style:none}
 .pc li{font-size:9.5pt;padding:4.5pt 0 4.5pt 16pt;position:relative;color:var(--ink);line-height:1.35}
@@ -68,13 +68,13 @@ h1,h2,h3,h4{font-family:'Poppins',sans-serif}
 .rr:last-of-type{border:none}
 .rr .rn{color:var(--ink);font-weight:600}
 .rr .rn small{display:block;color:#94A3B8;font-size:7.5pt;font-weight:400;margin-top:1pt}
-.rr .rp{font-family:'Poppins';color:var(--navy);font-weight:800;font-size:12pt;white-space:nowrap}
+.rr .rp{font-family:var(--font-display);color:var(--navy);font-weight:800;font-size:12pt;white-space:nowrap}
 .rr .rp small{font-size:7.5pt;color:#94A3B8;font-weight:500}
 .pc .foot{margin-top:auto;font-size:8pt;color:#94A3B8;line-height:1.4;padding-top:10pt}
 
 /* INCLUDES STRIP */
 .inc{background:var(--cream);border-radius:12pt;padding:14pt 18pt;margin-top:8mm}
-.inc .ik{font-family:'Poppins';font-size:8pt;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:10pt}
+.inc .ik{font-family:var(--font-display);font-size:8pt;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:10pt}
 .inc-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:9pt 14pt}
 .inc-grid span{font-size:9pt;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6pt}
 .finep{font-size:8pt;color:#94A3B8;text-align:center;margin-top:7mm}
@@ -96,7 +96,7 @@ h1,h2,h3,h4{font-family:'Poppins',sans-serif}
 .cta{background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;padding:18pt 22pt;display:flex;justify-content:space-between;align-items:center;gap:16pt}
 .cta h3{font-size:17pt;margin-bottom:5pt}
 .cta p{font-size:10pt;color:rgba(255,255,255,0.85);line-height:1.45}
-.cta .wa{background:#25D366;color:#fff;padding:11pt 20pt;border-radius:32pt;font-family:'Poppins';font-weight:800;font-size:13pt;white-space:nowrap;text-align:center}
+.cta .wa{background:#25D366;color:#fff;padding:11pt 20pt;border-radius:32pt;font-family:var(--font-display);font-weight:800;font-size:13pt;white-space:nowrap;text-align:center}
 .cta .wa small{display:block;font-size:7.5pt;font-weight:500;opacity:0.9;letter-spacing:0.5px}
 .pfoot{background:var(--ink);color:rgba(255,255,255,0.6);font-size:7.5pt;text-align:center;padding:7pt}
 </style>
