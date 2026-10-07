@@ -8,6 +8,3 @@ node_modules/
 /tmp/
 *.bak
 staging
-
-# impeccable capture artifacts (keep briefs + design.json, not screenshots)
-.impeccable/review/
