@@ -47,19 +47,34 @@ BREADCRUMB_LABELS = {
     "stay": "Stay", "plan": "Plan Your Stay",
     "corporate": "Corporate Retreats",
     "adventure": "Rishikesh Adventures",
+    "gallery": "Gallery", "press": "Press & Awards",
+    "sustainability": "Sustainability",
+    "room-jungle": "Jungle View Room",
+    "room-river": "Neelkanth Stream View Stay",
+    "room-farm": "Farm Stay Suite",
+}
+
+# Pages that sit one level below a parent section (Home > Parent > Page).
+BREADCRUMB_PARENT = {
+    "room-jungle": ("Stay", "/stay"),
+    "room-river": ("Stay", "/stay"),
+    "room-farm": ("Stay", "/stay"),
 }
 
 
 def breadcrumb(stem, label):
+    items = [{"@type": "ListItem", "position": 1, "name": "Home",
+              "item": f"{BASE}/"}]
+    if stem in BREADCRUMB_PARENT:
+        pname, ppath = BREADCRUMB_PARENT[stem]
+        items.append({"@type": "ListItem", "position": 2, "name": pname,
+                      "item": f"{BASE}{ppath}"})
+    items.append({"@type": "ListItem", "position": len(items) + 1,
+                  "name": label, "item": f"{BASE}/{stem}"})
     return {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home",
-             "item": f"{BASE}/"},
-            {"@type": "ListItem", "position": 2, "name": label,
-             "item": f"{BASE}/{stem}"},
-        ],
+        "itemListElement": items,
     }
 
 # Verbatim from the "Common questions" section of /retreat.
@@ -327,13 +342,15 @@ def apply(stem: str, blocks: list) -> bool:
 
 def main():
     changed = []
-    for stem, blocks in schemas().items():
-        blocks = list(blocks)
+    sch = schemas()
+    stems = list(sch.keys()) + [s for s in BREADCRUMB_LABELS if s not in sch]
+    for stem in stems:
+        blocks = list(sch.get(stem, []))
         if stem in BREADCRUMB_LABELS:
             blocks.append(breadcrumb(stem, BREADCRUMB_LABELS[stem]))
         if apply(stem, blocks):
             changed.append(stem)
-    print(f"schema: {len(schemas())} pages, {len(changed)} updated")
+    print(f"schema: {len(stems)} pages, {len(changed)} updated")
     return 0
 
 
